@@ -1,0 +1,55 @@
+﻿@using System.Security.Claims
+<div class="topbar">
+    <!-- LOGO -->
+    <div class="topbar-left">
+        <a asp-controller="Home" asp-action="Index" asp-area="Admin" class="logo">
+            <span>
+                <img src="/Admin/assets/images/logo-sm.png"
+                     alt="logo-small"
+                     class="logo-sm" />
+            </span>
+            <span>
+                <img src="/Admin/assets/images/logo-dark.png"
+                     alt="logo-large"
+                     class="logo-lg" />
+            </span>
+        </a>
+    </div>
+    <!--end logo-->
+    <!-- Navbar -->
+    <nav class="navbar-custom">
+        <ul class="list-unstyled topbar-nav float-right mb-0">
+            <li class="dropdown">
+                <a class="nav-link dropdown-toggle waves-effect waves-light nav-user"
+                   data-toggle="dropdown"
+                   href="#"
+                   role="button"
+                   aria-haspopup="false"
+                   aria-expanded="false">
+                    <img src="/Admin/assets/images/users/profile.png"
+                         alt="profile-user"
+                         class="rounded-circle" />
+                    <span class="ml-1 nav-user-name hidden-sm">
+                        @User.FindFirstValue("FullName") <i class="mdi mdi-chevron-down"></i>
+                    </span>
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" asp-controller="Home" asp-action="ChangePassword" asp-area="Admin"><i class="dripicons-user text-muted mr-2"></i> ویرایش پروفایل</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" asp-controller="Account" asp-action="Logout" asp-area="Admin"><i class="dripicons-exit text-muted mr-2"></i> خروج</a>
+                </div>
+            </li>
+        </ul>
+        <!--end topbar-nav-->
+
+        <ul class="list-unstyled topbar-nav mb-0">
+            <li>
+                <button class="button-menu-mobile nav-link waves-effect waves-light">
+                    <i class="dripicons-menu nav-icon"></i>
+                </button>
+            </li>
+            <li class="hide-phone"></li>
+        </ul>
+    </nav>
+    <!-- end navbar-->
+</div>

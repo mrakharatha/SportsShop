@@ -1,0 +1,42 @@
+﻿html {
+    position: relative;
+    min-height: 100%;
+    background-color: white;
+}
+
+body {
+    direction: rtl;
+    text-align: right;
+    background-color: white;
+}
+
+.headerReport {
+    margin-top: 32px;
+    margin-bottom: 100px;
+}
+
+.table thead tr th {
+    font-weight: 500;
+    color: #000000 !important;
+    font-size: 13px;
+}
+
+.table {
+    color: #000000 !important;
+}
+
+.table thead th {
+    border-bottom: 1px solid #000000 !important;
+}
+
+.table-bordered td, .table-bordered th {
+    border: 1px solid #000000 !important;
+}
+
+.table td {
+    direction: initial !important
+}
+
+.label {
+    direction: initial !important
+}

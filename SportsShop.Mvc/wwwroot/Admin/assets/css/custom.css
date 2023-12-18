@@ -1,0 +1,135 @@
+.left-sidenav .main-icon-menu {
+    background-color: #1a233a;
+}
+
+
+
+/*div.dataTables_wrapper div.dataTables_length select {
+    height: auto;
+}
+
+table.table-bordered.dataTable th:last-child, table.table-bordered.dataTable th:last-child, table.table-bordered.dataTable td:last-child, table.table-bordered.dataTable td:last-child {
+    border-right-width: 1px;
+}*/
+
+.custom-file-input:lang(fa) ~ .custom-file-label::after {
+    content: 'مرور';
+}
+
+
+.pagination {
+    margin-left: 10px !important;
+}
+
+.search-box {
+    padding: 5px;
+}
+
+/*.dataTables_length {
+    float: left;
+}*/
+
+.btn {
+    border-radius: 8px;
+}
+
+.grid-shadow {
+    box-shadow: 0 .5rem .5rem rgba(0,0,0,.175) !important;
+}
+
+.seprator {
+    width: 100px;
+    height: 6px;
+    background-color: #c8d6e5;
+    margin-top: 10px;
+}
+
+.seprator.active {
+    background-color: #0abde3;
+}
+
+.wizard-icon {
+    font-size: 30px;
+}
+
+.add-tip-btn {
+/*    display: flex;
+*/    align-items: center;
+/*    justify-content: flex-end;
+*/
+
+}
+
+
+#loader {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    z-index: 1;
+    width: 120px;
+    height: 120px;
+    margin: -76px 0 0 -76px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+    from {
+        bottom: -100px;
+        opacity: 0
+    }
+
+    to {
+        bottom: 0px;
+        opacity: 1
+    }
+}
+
+@keyframes animatebottom {
+    from {
+        bottom: -100px;
+        opacity: 0
+    }
+
+    to {
+        bottom: 0;
+        opacity: 1
+    }
+}
+
+#myDiv {
+    display: none;
+    text-align: center;
+}

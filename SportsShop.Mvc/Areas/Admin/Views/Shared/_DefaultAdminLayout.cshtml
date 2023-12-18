@@ -1,0 +1,176 @@
+﻿
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <partial name="__MetaTags" />
+    @RenderSection("CustomStyles", false)
+    <partial name="__Styles" />
+
+
+</head>
+
+<body>
+    <!-- Top Bar Start -->
+    <partial name="_NavbarHeader" />
+    <!-- Top Bar End -->
+
+    <div class="page-wrapper">
+        <!-- Left Sidenav -->
+
+
+        
+        
+        <div class="left-sidenav">
+            <div class="main-icon-menu">
+                <nav class="nav">
+
+                    <a href="#home"
+                       class="nav-link"
+                       data-toggle="tooltip-custom"
+                       data-placement="top"
+                       title=""
+                       data-original-title="خانه">
+                        <svg class="nav-svg"
+                             version="1.1"
+                             id="Layer_1"
+                             xmlns="http://www.w3.org/2000/svg"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"
+                             x="0px"
+                             y="0px"
+                             viewBox="0 0 512 512"
+                             style="enable-background: new 0 0 512 512"
+                             xml:space="preserve">
+                            <g>
+                                <path class="svg-primary"
+                                      d="M437.333 32H74.667C51.198 32 32 51.197 32 74.666v282.667C32 380.802 51.198 400 74.667 400h138.666l-42.666 48v32h170.666v-32l-42.666-48h138.666C460.802 400 480 380.802 480 357.333V74.666C480 51.197 460.802 32 437.333 32zm0 288H74.667V74.666h362.666V320z"></path>
+                            </g>
+                        </svg>
+                    </a>
+                    
+                    
+                    <a href="#project"
+                       class="nav-link"
+                       data-toggle="tooltip-custom"
+                       data-placement="top"
+                       title=""
+                       data-original-title="پروژه">
+                        <svg class="nav-svg"
+                             xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 512 512">
+                            <path d="M70.7 164.5l169.2 81.7c4.4 2.1 10.3 3.2 16.1 3.2s11.7-1.1 16.1-3.2l169.2-81.7c8.9-4.3 8.9-11.3 0-15.6L272.1 67.2c-4.4-2.1-10.3-3.2-16.1-3.2s-11.7 1.1-16.1 3.2L70.7 148.9c-8.9 4.3-8.9 11.3 0 15.6z" />
+                            <path class="svg-primary"
+                                  d="M441.3 248.2s-30.9-14.9-35-16.9-5.2-1.9-9.5.1S272 291.6 272 291.6c-4.5 2.1-10.3 3.2-16.1 3.2s-11.7-1.1-16.1-3.2c0 0-117.3-56.6-122.8-59.3-6-2.9-7.7-2.9-13.1-.3l-33.4 16.1c-8.9 4.3-8.9 11.3 0 15.6l169.2 81.7c4.4 2.1 10.3 3.2 16.1 3.2s11.7-1.1 16.1-3.2l169.2-81.7c9.1-4.2 9.1-11.2.2-15.5z" />
+                            <path d="M441.3 347.5s-30.9-14.9-35-16.9-5.2-1.9-9.5.1S272.1 391 272.1 391c-4.5 2.1-10.3 3.2-16.1 3.2s-11.7-1.1-16.1-3.2c0 0-117.3-56.6-122.8-59.3-6-2.9-7.7-2.9-13.1-.3l-33.4 16.1c-8.9 4.3-8.9 11.3 0 15.6l169.2 81.7c4.4 2.2 10.3 3.2 16.1 3.2s11.7-1.1 16.1-3.2l169.2-81.7c9-4.3 9-11.3.1-15.6z" />
+                        </svg>
+                    </a>
+                    
+                    <a href="#Support"
+                       class="nav-link"
+                       data-toggle="tooltip-custom"
+                       data-placement="top"
+                       title=""
+                       data-original-title="پشتیبانی">
+                        <svg class="nav-svg"
+                             version="1.1"
+                             id="Layer_3"
+                             xmlns="http://www.w3.org/2000/svg"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"
+                             x="0px"
+                             y="0px"
+                             viewBox="0 0 512 512"
+                             style="enable-background: new 0 0 512 512"
+                             xml:space="preserve">
+                            <g>
+                                <path class="svg-primary"
+                                      d="M256 48C141.6 48 48 141.601 48 256s93.6 208 208 208 208-93.601 208-208S370.4 48 256 48zm24 312h-48v-40h48v40zm0-88h-48V144h48v128z"></path>
+                            </g>
+                        </svg>
+                    </a>
+                    
+
+
+                </nav>
+                <!--end nav-->
+            </div>
+            <!--end main-icon-menu-->
+
+            <div class="main-menu-inner">
+                <div class="menu-body slimscroll">
+
+                    <div id="home" class="main-icon-menu-pane">
+                        <div class="title-box">
+                            <h6 class="menu-title">خانه</h6>
+                        </div>
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                   asp-controller="Home" asp-action="Index" asp-area="Admin"><i class="dripicons-meter"></i>داشبورد</a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+
+                    <div id="project" class="main-icon-menu-pane">
+                        <div class="title-box">
+                            <h6 class="menu-title">پروژه ها</h6>
+                        </div>
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Project" asp-action="Index" asp-area="Admin"><i class="dripicons-view-thumb"></i>پروژه</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    
+                    
+                    <div id="Support" class="main-icon-menu-pane">
+                        <div class="title-box">
+                            <h6 class="menu-title">پشتیبانی</h6>
+                        </div>
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a class="nav-link" id="Ticket" asp-controller="Ticket" asp-action="Index" asp-area="Admin"><i class="dripicons-message"></i>تیکت</a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+
+                    <!-- end home -->
+                    <!-- end setting -->
+                </div>
+                <!--end menu-body-->
+            </div>
+            <!-- end main-menu-inner-->
+        </div>
+        
+
+
+
+
+        <!-- end left-sidenav-->
+        <!-- Page Content-->
+        <div class="page-content mt-4">
+            <div class="container-fluid">
+                <!-- Page-Title -->
+                @RenderBody()
+                <!-- end page title end breadcrumb -->
+                <!-- render body  -->
+            </div>
+            <!-- container -->
+            <!--end footer-->
+        </div>
+        <!-- end page content -->
+    </div>
+    <!-- end page-wrapper -->
+    <!-- jQuery  -->
+
+
+    <partial name="_Scripts" />
+@await RenderSectionAsync("Script", false)
+
+</body>
+</html>

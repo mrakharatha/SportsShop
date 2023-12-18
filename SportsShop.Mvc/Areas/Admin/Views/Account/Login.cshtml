@@ -1,0 +1,105 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>مدیریت فروشگاه صفحه ورود</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A premium admin dashboard template by Mannatthemes" name="description" />
+    <meta content="Mannatthemes" name="author" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="/Admin/assets/images/favicon.ico">
+
+    <!-- App css -->
+    <link href="/Admin/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Admin/assets/css/icons.css" rel="stylesheet" type="text/css" />
+    <link href="/Admin/assets/css/metisMenu.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/Admin/assets/css/font.css" />
+    <link href="/Admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body class="account-body accountbg">
+
+    <!-- Log In page -->
+    <div class="row vh-100 ">
+        <div class="col-12 align-self-center">
+            <div class="auth-page">
+                <div class="card auth-card shadow-lg">
+                    <div class="card-body">
+                        <div class="px-3">
+
+
+                            <div class="text-center auth-logo-text">
+                                <h4 class="mt-0 mb-3 mt-5">خوش آمدید</h4>
+                                <p class="text-muted mb-0">مشخصات خود را وارد کنید </p>
+                            </div> <!--end auth-logo-text-->
+
+
+                            <form class="form-horizontal auth-form my-4" method="post">
+
+                          @*       <div class="form-group">
+                                    <label>@Html.LabelFor(u => u.ExclusiveCode)</label>
+                                    <div class="input-group mb-3">
+                                        <span class="auth-form-icon">
+                                            <i class="dripicons-user"></i>
+                                        </span>
+                                        <input type="number" step="any"  autocomplete="off" class="form-control" asp-for="ExclusiveCode" placeholder="نام کاربری خود را وارد کنید">
+                                    </div>
+                                    <span asp-validation-for="ExclusiveCode" class="text-danger"></span>
+                                </div><!--end form-group-->
+
+                                <div class="form-group">
+                                    <label>@Html.LabelFor(u => u.Password)</label>
+                                    <div class="input-group mb-3">
+                                        <span class="auth-form-icon">
+                                            <i class="dripicons-lock"></i>
+                                        </span>
+                                        <input type="password" autocomplete="off" class="form-control" asp-for="Password" placeholder="پسورد خود را وارد کنید">
+                                    </div>
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div><!--end form-group--> *@
+
+                                <div class="form-group row mt-4">
+                                    <div class="col-sm-6">
+                                        <div class="custom-control custom-switch switch-success">
+@*                                             <input type="checkbox" class="custom-control-input" id="customSwitchSuccess" asp-for="RememberMe">
+ *@                                            <label class="custom-control-label text-muted" for="customSwitchSuccess">مرا به خاطر داشته باش</label>
+                                        </div>
+                                    </div><!--end col-->
+                                  
+                                </div><!--end form-group-->
+
+                                <div class="form-group mb-0 row">
+                                    <div class="col-12 mt-2">
+                                        <button class="btn btn-primary btn-round btn-block waves-effect waves-light" type="submit">ورود <i class="fas fa-sign-in-alt ml-1"></i></button>
+                                    </div><!--end col-->
+                                </div> <!--end form-group-->
+                            </form><!--end form-->
+                        </div><!--end /div-->
+
+
+                    </div><!--end card-body-->
+                </div><!--end card-->
+
+            </div><!--end auth-page-->
+        </div><!--end col-->
+    </div><!--end row-->
+    <!-- End Log In page -->
+    <!-- jQuery  -->
+    <script src="/Admin/assets/js/jquery.min.js"></script>
+    <script src="/Admin/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/Admin/assets/js/metisMenu.min.js"></script>
+    <script src="/Admin/assets/js/waves.min.js"></script>
+    <script src="/Admin/assets/js/jquery.slimscroll.min.js"></script>
+
+    <!-- App js -->
+    <script src="/Admin/assets/js/app.js"></script>
+    <script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>
