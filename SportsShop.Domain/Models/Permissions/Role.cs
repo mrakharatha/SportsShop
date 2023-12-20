@@ -25,8 +25,8 @@ namespace SportsShop.Domain.Models.Permissions
 
         #region Relations
 
-        public List<RolePermission> RolePermissionAdmins { get; set; }
-        public  List<UserRole> UserRoles { get; set; }
+        public List<RolePermission> RolePermissions{ get; set; }
+        public  List<User.User> Users { get; set; }
 
         #endregion
 

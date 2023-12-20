@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SportsShop.Application.Interfaces;
 using SportsShop.Domain.Interfaces;
 using SportsShop.Domain.Models.Permissions;
@@ -19,6 +21,22 @@ namespace SportsShop.Application.Services
         
         }
 
+
+        public List<SelectListItem> GetRoleSelectList()
+        {
+            List<SelectListItem> result = new List<SelectListItem>()
+            {
+                new SelectListItem()
+                {
+                    Value = null,
+                    Text = "لطفا انتخاب کنید",
+                }
+            };
+
+            result.AddRange(_permissionRepository.GetRoleSelectList());
+
+            return result;
+        }
 
         public List<Role> GetRoles()
         {
@@ -82,39 +100,14 @@ namespace SportsShop.Application.Services
             _permissionRepository.AddRolePermission(rolePermissions);
         }
 
-        public void AddRolesToUser(List<int> rolesId, int userId)
-        {
-            List<UserRole> userRoles = new List<UserRole>();
-            foreach (var roleId in rolesId)
-            {
-                userRoles.Add(new UserRole()
-                {
-                    RoleId = roleId,
-                    UserId = userId
-                });
-            }
-            _permissionRepository.AddRolesToUser(userRoles);
-        }
+
 
         public bool CheckPermission(int permissionId, int userId)
         {
-            if (userId == 1)
-                return true;
-
-            var userRoles = GetUserRolesByUserId(userId);
-
-            if (!userRoles.Any())
-                return false;
-
-            var rolePermission = GetRolePermissionByPermissionId(permissionId);
-
-            return rolePermission.Any(p => userRoles.Contains(p));
+            return _permissionRepository.CheckPermission(permissionId, userId);
         }
 
-        public void DeleteUserRoles(int userid)
-        {
-            _permissionRepository.DeleteUserRoles(userid);
-        }
+
 
         public bool CheckDelete(int roleId)
         {
@@ -128,16 +121,6 @@ namespace SportsShop.Application.Services
             UpdateRole(role);
         }
 
-        public void UpdateRolesToUser(List<int> rolesId, int userId)
-        {
-            DeleteUserRoles(userId);
-            AddRolesToUser(rolesId,userId);
-        }
-
-        public List<int> GetUserRolesByUserId(int userId)
-        {
-            return _permissionRepository.GetUserRolesByUserId(userId);
-        }
 
         public List<int> GetRolePermissionByPermissionId(int permissionId)
         {

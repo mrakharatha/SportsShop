@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SportsShop.Domain.Models.Permissions;
 using SportsShop.Domain.Models.User;
 
@@ -6,7 +7,8 @@ namespace SportsShop.Domain.Interfaces
 {
  public   interface IPermissionRepository
     {
-       
+        List<SelectListItem> GetRoleSelectList();
+
         List<Role> GetRoles();
        
         List<Permission> GetAllPermission();
@@ -22,15 +24,9 @@ namespace SportsShop.Domain.Interfaces
         void UpdateRole(Role role);
        
         void DeletePermissionsRole(int roleId);
-      
-        void AddRolesToUser(List<UserRole> userRoles);
-       
-        void DeleteUserRoles(int userid);
         
         bool CheckDelete(int roleId);
-       
-        List<int> GetUserRolesByUserId(int userId);
-       
         List<int> GetRolePermissionByPermissionId(int permissionId);
+        bool CheckPermission(int permissionId, int userId);
     }
 }

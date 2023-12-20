@@ -1,0 +1,153 @@
+﻿
+@using SportsShop.Domain.Models.Permissions
+@using SportsShop.Application.Interfaces
+@model SportsShop.Domain.ViewModels.User.CreateUserViewModel
+@inject IPermissionService PermissionService
+@{
+    ViewData["Title"] = "افزودن کاربر";
+    Layout = "_DefaultAdminLayout";
+}
+
+
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item">
+                                    <a asp-controller="Home" asp-action="Index" asp-area="Admin"><i class="mdi mdi-home"></i></a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a asp-controller="User" asp-action="Index" asp-area="Admin">لیست کاربران</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    <a href="#">افزودن کاربر</a>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-md-12 col-12">
+            <div class="card">
+              
+                <div class="card-content">
+                    <div class="card-body">
+                        <form class="form form-vertical" method="post">
+                            <div class="form-body">
+                                <div class="row">
+
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label asp-for="FullName"> </label>
+                                            <div class="position-relative ">
+                                                <input autocomplete="off" type="text" class="form-control" asp-for="FullName">
+                                                <span asp-validation-for="FullName" class="text-danger"></span>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label asp-for="UserName"> </label>
+                                            <div class="position-relative ">
+                                                <input autocomplete="off"   class="form-control" asp-for="UserName">
+                                                <span asp-validation-for="UserName" class="text-danger"></span>
+
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                    <label asp-for="Password"> </label>
+                                    <div class="position-relative ">
+                                                <input autocomplete="off" type="password" class="form-control" asp-for="Password">
+                                                <span asp-validation-for="Password" class="text-danger"></span>
+                                              
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                    <label asp-for="RePassword"> </label>
+                                    <div class="position-relative ">
+                                                <input autocomplete="off" type="password" class="form-control" asp-for="RePassword">
+                                                <span asp-validation-for="RePassword" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+                                    
+
+
+
+                                 
+
+
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label asp-for="RoleId"></label>
+                                            <div class="position-relative has-icon-left">
+                                                <select class="select2 form-control select2-hidden-accessible" asp-for="RoleId" asp-items="@(new SelectList(PermissionService.GetRoleSelectList() ,"Value","Text"))">
+                                                </select>
+                                                <span class="text-danger" asp-validation-for="RoleId"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary px-4 mb-1">ثبت</button>
+                                    </div>
+
+
+
+
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+
+
+@section CustomStyles
+{
+    <link href="/Admin/assets/plugins/select2/select2.min.css" rel="stylesheet" type="text/css" />
+}
+
+@section Script
+{
+
+
+
+    <script src="/Admin/assets/plugins/moment/moment.js"></script>
+    <script src="/Admin/assets/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="/Admin/assets/plugins/select2/select2.min.js"></script>
+    <script src="/Admin/assets/pages/jquery.forms-advanced.js"></script>
+
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        $("#information").addClass('active');
+        $("a[href='#information']").addClass('active');
+        $("#User").addClass('active');
+    </script>
+}

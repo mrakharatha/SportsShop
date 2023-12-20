@@ -15,5 +15,9 @@
 		<PackageReference Include="Z.EntityFramework.Extensions.EFCore" Version="5.20.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\SportsShop.Domain\SportsShop.Domain.csproj" />
+	</ItemGroup>
+
 
 </Project>

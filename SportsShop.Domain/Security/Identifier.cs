@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Claims;
 
-namespace SportsShop.Application.Security
+namespace SportsShop.Domain.Security
 {
     /// <summary>
     /// select id users

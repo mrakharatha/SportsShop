@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SportsShop.Application.Interfaces;
-using SportsShop.Application.Security;
 using SportsShop.Domain.Models.Permissions;
+using SportsShop.Domain.Security;
 
 namespace SportsShop.Mvc.Areas.Admin.Controllers
 {
@@ -24,7 +24,6 @@ namespace SportsShop.Mvc.Areas.Admin.Controllers
 
         public IActionResult RoleCreate()
         {
-            ViewData["Permissions"] = _permissionService.GetAllPermission();
             return View();
         }
 
@@ -35,7 +34,6 @@ namespace SportsShop.Mvc.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewData["Permissions"] = _permissionService.GetAllPermission();
                 return View();
             }
 
@@ -49,8 +47,6 @@ namespace SportsShop.Mvc.Areas.Admin.Controllers
 
         public IActionResult RoleEdit(int id)
         {
-            ViewData["Permissions"] = _permissionService.GetAllPermission();
-            ViewData["SelectedPermissions"] = _permissionService.PermissionsRole(id);
             return View(_permissionService.GetRoleByRoleId(id));
         }
 
@@ -59,8 +55,6 @@ namespace SportsShop.Mvc.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewData["Permissions"] = _permissionService.GetAllPermission();
-                ViewData["SelectedPermissions"] = _permissionService.PermissionsRole(role.RoleId);
                 return View(role);
             }
 
