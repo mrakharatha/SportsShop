@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using SportsShop.Application.Helpers;
 using SportsShop.Application.Interfaces;
 using SportsShop.Domain.Interfaces;
 using SportsShop.Domain.Models.User;
@@ -46,7 +47,11 @@ namespace SportsShop.Application.Services
             return userId;
         }
 
-       
+        public bool CheckDelete(int userId)
+        {
+            return _userRepository.CheckDelete(userId);
+        }
+
 
         public int AddUser(User user)
         {
@@ -102,11 +107,18 @@ namespace SportsShop.Application.Services
             UpdateUser(user);
         }
 
-        public void DeleteUser(int userId)
+        public RequestResult DeleteUser(int userId)
         {
-            User user = GetUserByUserId(userId);
+
+            var user = _userRepository.GetUserByUserId(userId);
+            if (user == null) return new RequestResult(false, RequestResultStatusCode.InternalServerError);
+
+            if (CheckDelete(userId) || user.UserId == userId)
+                return new RequestResult(false, RequestResultStatusCode.InternalServerError, "کاربر در سیستم استفاده شده است!");
+
             user.DeleteDate = DateTime.Now;
             UpdateUser(user);
+            return new RequestResult(true, RequestResultStatusCode.Success, "کاربر با موفقیت حذف شد.");
         }
 
         public User GetUserByUserName(string username)

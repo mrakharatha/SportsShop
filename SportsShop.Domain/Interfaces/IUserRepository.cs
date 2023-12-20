@@ -18,7 +18,8 @@ namespace SportsShop.Domain.Interfaces
         User LoginUser(LoginViewModel login);
         bool CompareOldPassword(int userId, string oldPassword);
         User GetUserByUserName(string username);
-      
+        bool CheckDelete(int userId);
+
 
     }
 }

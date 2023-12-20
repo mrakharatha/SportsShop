@@ -1,4 +1,5 @@
-﻿@{
+﻿@model SportsShop.Domain.ViewModels.Account.LoginViewModel
+@{
     Layout = null;
 }
 
@@ -42,15 +43,15 @@
 
                             <form class="form-horizontal auth-form my-4" method="post">
 
-                          @*       <div class="form-group">
-                                    <label>@Html.LabelFor(u => u.ExclusiveCode)</label>
+                                <div class="form-group">
+                                    <label>@Html.LabelFor(u => u.UserName)</label>
                                     <div class="input-group mb-3">
                                         <span class="auth-form-icon">
                                             <i class="dripicons-user"></i>
                                         </span>
-                                        <input type="number" step="any"  autocomplete="off" class="form-control" asp-for="ExclusiveCode" placeholder="نام کاربری خود را وارد کنید">
+                                        <input  autocomplete="off" class="form-control" asp-for="UserName" placeholder="نام کاربری خود را وارد کنید">
                                     </div>
-                                    <span asp-validation-for="ExclusiveCode" class="text-danger"></span>
+                                    <span asp-validation-for="UserName" class="text-danger"></span>
                                 </div><!--end form-group-->
 
                                 <div class="form-group">
@@ -62,13 +63,13 @@
                                         <input type="password" autocomplete="off" class="form-control" asp-for="Password" placeholder="پسورد خود را وارد کنید">
                                     </div>
                                     <span asp-validation-for="Password" class="text-danger"></span>
-                                </div><!--end form-group--> *@
+                                </div><!--end form-group-->
 
                                 <div class="form-group row mt-4">
                                     <div class="col-sm-6">
                                         <div class="custom-control custom-switch switch-success">
-@*                                             <input type="checkbox" class="custom-control-input" id="customSwitchSuccess" asp-for="RememberMe">
- *@                                            <label class="custom-control-label text-muted" for="customSwitchSuccess">مرا به خاطر داشته باش</label>
+                                             <input type="checkbox" class="custom-control-input" id="customSwitchSuccess" asp-for="RememberMe">
+                                           <label class="custom-control-label text-muted" for="customSwitchSuccess">مرا به خاطر داشته باش</label>
                                         </div>
                                     </div><!--end col-->
                                   

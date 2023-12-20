@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using SportsShop.Application.Helpers;
 using SportsShop.Application.Interfaces;
 using SportsShop.Domain.Interfaces;
 using SportsShop.Domain.Models.Permissions;
@@ -114,11 +115,18 @@ namespace SportsShop.Application.Services
             return _permissionRepository.CheckDelete(roleId);
         }
 
-        public void DeleteRole(int roleId)
+        public RequestResult DeleteRole(int roleId)
         {
-            Role role = GetRoleByRoleId(roleId);
+
+            var role = GetRoleByRoleId(roleId);
+
+            if (role.RoleId == 1 |  CheckDelete(roleId)||role.RoleId==roleId)
+                return new RequestResult(false, RequestResultStatusCode.InternalServerError, "نقش در سیستم استفاده شده است!");
+         
             role.DeleteDate = DateTime.Now;
             UpdateRole(role);
+
+            return new RequestResult(true, RequestResultStatusCode.Success, "نقش با موفقیت حذف شد.");
         }
 
 

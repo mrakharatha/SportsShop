@@ -119,41 +119,30 @@
                 if (result.value) {
                     $.get("/Admin/Role/Delete/" + id,
                         function(data) {
-                            if (data === 3) {
-                                $("#Role_" + id).hide('slow');
 
+
+                            if (data.isSuccess) {
                                 Swal.fire({
                                     type: "success",
                                     title: 'حذف شد!',
-                                    text: ' دسترسی با موفقیت حذف شد',
+                                    text: data.message,
                                     confirmButtonClass: 'btn btn-success',
                                     confirmButtonText: 'باشه',
                                 });
+
+                                $("#Role_" + id).hide('slow');
                             }
-                            if (data === 2) {
+                            else {
                                 Swal.fire({
                                     title: "خطا!",
-                                    text: "سطح دسترسی برای کاربری تعریف شده است!",
+                                    text: data.message,
                                     type: "error",
                                     confirmButtonClass: 'btn btn-primary',
                                     confirmButtonText: 'باشه',
                                     buttonsStyling: false,
                                 });
                             }
-
-                            if (data === 1) {
-                                Swal.fire({
-                                    title: "خطا!",
-                                    text: "شما مجاز به دسترسی نیستید!",
-                                    type: "error",
-                                    confirmButtonClass: 'btn btn-primary',
-                                    confirmButtonText: 'باشه',
-                                    buttonsStyling: false,
-                                });
-                            }
-
-
-                        });
+                            });
                 }
             });
 

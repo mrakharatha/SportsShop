@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SportsShop.Application.Helpers;
 using SportsShop.Application.Interfaces;
 using SportsShop.Domain.Models.Permissions;
 using SportsShop.Domain.Security;
@@ -64,14 +65,16 @@ namespace SportsShop.Mvc.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        public int Delete(int id)
+        public RequestResult Delete(int id)
         {
-            if (!_permissionService.CheckPermission(6, User.GetUserId()))
-                return 1;
-            if (_permissionService.CheckDelete(id))
-                return 2;
-            _permissionService.DeleteRole(id);
-            return 3;
+            if (!_permissionService.CheckPermission(14, User.GetUserId()))
+                return new RequestResult(false, RequestResultStatusCode.Forbidden);
+
+
+            return _permissionService.DeleteRole(id);
         }
+
+
+     
     }
 }

@@ -79,5 +79,10 @@ namespace SportsShop.Infra.Data.Repository
         {
             return _context.Users.First(u => u.UserName == username);
         }
+
+        public bool CheckDelete(int userId)
+        {
+            return false;
+        }
     }
 }

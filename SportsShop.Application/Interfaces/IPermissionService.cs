@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Security;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using SportsShop.Application.Helpers;
 
 namespace SportsShop.Application.Interfaces
 {
@@ -30,7 +31,7 @@ namespace SportsShop.Application.Interfaces
      
      
         bool CheckDelete(int roleId);
-       
-        void DeleteRole(int roleId);
+
+        RequestResult DeleteRole(int roleId);
     }
 }

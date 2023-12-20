@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using SportsShop.Application.Helpers;
 using SportsShop.Application.Interfaces;
 using SportsShop.Domain.Security;
 using SportsShop.Domain.ViewModels.User;
@@ -75,16 +76,16 @@ namespace SportsShop.Mvc.Areas.Admin.Controllers
 
 
 
-        public bool Delete(int id)
+
+        public RequestResult Delete(int id)
         {
-
             if (!_permissionService.CheckPermission(14, User.GetUserId()))
-                return false;
+                return     new RequestResult(false, RequestResultStatusCode.Forbidden);
 
-            _userService.DeleteUser(id);
-            return true;
 
+            return _userService.DeleteUser(id);
         }
+
 
 
     }

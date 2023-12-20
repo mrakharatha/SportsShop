@@ -6,9 +6,7 @@ namespace SportsShop.Domain.ViewModels.Account
     {
         [Display(Name = "نام کاربری")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید ")]
-        [MaxLength(11, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
-        [MinLength(11, ErrorMessage = "{0} نمی تواند کمتر از {1} کاراکتر باشد .")]
-        [RegularExpression(@"^(\+98|0)?9\d{9}$", ErrorMessage = "شماره موبایل فرمت نامناسب دارد")]
+        [MaxLength(50, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
         public string UserName { get; set; }
 
         [Display(Name = "کلمه عبور")]

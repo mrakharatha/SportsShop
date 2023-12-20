@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SportsShop.Application.Helpers;
 using SportsShop.Domain.Models.User;
 using SportsShop.Domain.ViewModels.Account;
 using SportsShop.Domain.ViewModels.User;
@@ -12,9 +13,10 @@ namespace SportsShop.Application.Interfaces
      
      bool IsExistUserName(string userName);
      int AddUserViewModel(CreateUserViewModel user);
-  
-     
-     int AddUser(User user);
+     bool CheckDelete(int userId);
+
+
+        int AddUser(User user);
   
      EditUserViewModel GetUserViewModelByUserId(int userId);
    
@@ -29,9 +31,10 @@ namespace SportsShop.Application.Interfaces
      bool CompareOldPassword(int userId, string oldPassword);
       
      void ChangeUserPassword(int userId, string newPassword);
-       
-     void DeleteUser(int userId);
-      
-     User GetUserByUserName(string username);
+
+     RequestResult DeleteUser( int userId);
+
+
+        User GetUserByUserName(string username);
  }
 }
