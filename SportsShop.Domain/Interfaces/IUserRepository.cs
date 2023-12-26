@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using SportsShop.Domain.Models.User;
+using SportsShop.Domain.Models.Users;
 using SportsShop.Domain.ViewModels.Account;
 using SportsShop.Domain.ViewModels.User;
 

@@ -2,7 +2,8 @@
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using SportsShop.Domain.Models.Permissions;
-using SportsShop.Domain.Models.User;
+using SportsShop.Domain.Models.Stores;
+using SportsShop.Domain.Models.Users;
 using SportsShop.Infra.Data.Seeders;
 
 namespace SportsShop.Infra.Data.Context
@@ -17,6 +18,7 @@ namespace SportsShop.Infra.Data.Context
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<RolePermission> RolePermissions { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Office> Offices { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

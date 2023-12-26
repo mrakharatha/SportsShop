@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SportsShop.Domain.Interfaces;
 using SportsShop.Domain.Models.Permissions;
-using SportsShop.Domain.Models.User;
 using SportsShop.Infra.Data.Context;
 
 namespace SportsShop.Infra.Data.Repository

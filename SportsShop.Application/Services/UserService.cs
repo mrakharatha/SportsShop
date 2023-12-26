@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using SportsShop.Application.Helpers;
 using SportsShop.Application.Interfaces;
 using SportsShop.Domain.Interfaces;
-using SportsShop.Domain.Models.User;
+using SportsShop.Domain.Models.Users;
 using SportsShop.Domain.Security;
 using SportsShop.Domain.ViewModels.Account;
 using SportsShop.Domain.ViewModels.User;

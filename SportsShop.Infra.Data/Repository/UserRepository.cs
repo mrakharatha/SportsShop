@@ -2,7 +2,7 @@
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using SportsShop.Domain.Interfaces;
-using SportsShop.Domain.Models.User;
+using SportsShop.Domain.Models.Users;
 using SportsShop.Domain.ViewModels.Account;
 using SportsShop.Domain.ViewModels.User;
 using SportsShop.Infra.Data.Context;

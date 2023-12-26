@@ -1,40 +1,24 @@
 ﻿<!DOCTYPE html>
 <html lang="en" dir="rtl">
-
 <head>
-  <partial name="_MetaTags"/>
-
-
-  <partial name="_Style" />
-
-
-	@await RenderSectionAsync("Style", false)
-
-
+    <partial name="_MetaTags" />
+    <partial name="_Style" />
+    @RenderSection("Style", false)
 </head>
-
 <body>
-
-	<div class="page-wrapper">
-		<partial name="_Header"/>
-		<main class="main">
-			@RenderBody()
-		</main>
-
-		<partial name="_Footer"/>
-	</div>
-
-	<button id="scroll-top" title="بازگشت به بالا"><i class="icon-arrow-up"></i></button>
-
-	
-
-<partial name="_Mobile"/>
-<partial name="_SignInRegisterModal"/>
-
-<partial name="_Script"/>
-
-	@await RenderSectionAsync("Script", false)
-
+    <div class="page-wrapper">
+        <partial name="_Header" />
+        <main class="main">
+            @RenderBody()
+        </main>
+        <partial name="_Footer" />
+    </div>
+    <button id="scroll-top" title="بازگشت به بالا"><i class="icon-arrow-up"></i></button>
+    <partial name="_Mobile" />
+    <partial name="_SignInRegisterModal" />
+    <partial name="_Script" />
+    @RenderSection("Script", false);
 </body>
-
 </html>
+
+

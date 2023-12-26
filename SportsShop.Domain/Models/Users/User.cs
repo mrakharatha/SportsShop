@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using SportsShop.Domain.Models.Permissions;
+using SportsShop.Domain.Models.Stores;
 
-namespace SportsShop.Domain.Models.User
+namespace SportsShop.Domain.Models.Users
 {
     public class User
     {
@@ -48,7 +49,7 @@ namespace SportsShop.Domain.Models.User
 
         #region Relations
         public Role  Role { get; set; }
-       
+        public List<Office> Offices { get; set; }
 
         #endregion
     }

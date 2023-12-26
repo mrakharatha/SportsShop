@@ -7,7 +7,6 @@ using SportsShop.Application.Helpers;
 using SportsShop.Application.Interfaces;
 using SportsShop.Domain.Interfaces;
 using SportsShop.Domain.Models.Permissions;
-using SportsShop.Domain.Models.User;
 
 namespace SportsShop.Application.Services
 {

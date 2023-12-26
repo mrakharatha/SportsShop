@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SportsShop.Domain.Models.Permissions;
-using SportsShop.Domain.Models.User;
 
 namespace SportsShop.Domain.Interfaces
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SportsShop.Domain.Models.User;
+using SportsShop.Domain.Models.Users;
 using SportsShop.Domain.Security;
 
 namespace SportsShop.Infra.Data.Seeders

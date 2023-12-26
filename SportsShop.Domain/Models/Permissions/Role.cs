@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using SportsShop.Domain.Models.User;
+using SportsShop.Domain.Models.Users;
 
 namespace SportsShop.Domain.Models.Permissions
 {
@@ -26,7 +26,7 @@ namespace SportsShop.Domain.Models.Permissions
         #region Relations
 
         public List<RolePermission> RolePermissions{ get; set; }
-        public  List<User.User> Users { get; set; }
+        public  List<User> Users { get; set; }
 
         #endregion
 

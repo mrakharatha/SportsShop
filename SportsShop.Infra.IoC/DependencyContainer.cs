@@ -15,12 +15,14 @@ namespace SportsShop.Infra.IoC
 
             service.AddScoped<IPermissionService, PermissionService>();
             service.AddScoped<IUserService, UserService>();
+            service.AddScoped<IOfficeService, OfficeService>();
             #endregion
 
             #region Infra Data Layer
 
             service.AddScoped<IPermissionRepository, PermissionRepository>();
             service.AddScoped<IUserRepository, UserRepository>();
+            service.AddScoped<IOfficeRepository, OfficeRepository>();
 
             #endregion
 
