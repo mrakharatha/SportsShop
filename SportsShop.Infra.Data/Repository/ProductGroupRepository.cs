@@ -32,9 +32,8 @@ namespace SportsShop.Infra.Data.Repository
             IQueryable<ProductGroup> query = _context.ProductGroups;
 
 
-            if (checkIsNullParent)
-                query = query.Where(x => x.ParentId == null);
-            
+            query = checkIsNullParent ? query.Where(x => x.ParentId == null) : query.Where(x => x.ParentId != null);
+
 
 
             return query
@@ -44,6 +43,12 @@ namespace SportsShop.Infra.Data.Repository
                     Text = r.Name,
                     Value = r.Id.ToString()
                 }).ToList();
+        }
+
+        public void AddProductGroup(ProductGroup productGroup)
+        {
+            _context.Add(productGroup);
+            _context.SaveChanges();
         }
     }
 }

@@ -10,5 +10,6 @@ namespace SportsShop.Application.Interfaces
 
         List<SelectListItem> GetAllProductGroups(bool checkIsNullParent);
 
+        void AddProductGroup(ProductGroup productGroup);
     }
 }

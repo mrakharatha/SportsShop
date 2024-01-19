@@ -35,5 +35,10 @@ namespace SportsShop.Application.Services
 
             return result;
         }
+
+        public void AddProductGroup(ProductGroup productGroup)
+        {
+            _productGroupRepository.AddProductGroup(productGroup);
+        }
     }
 }

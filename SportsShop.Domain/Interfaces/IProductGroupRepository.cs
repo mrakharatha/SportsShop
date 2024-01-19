@@ -8,6 +8,7 @@ namespace SportsShop.Domain.Interfaces
     {
         List<ProductGroup> GetAll();
         List<SelectListItem> GetAllProductGroups(bool checkIsNullParent);
+        void AddProductGroup(ProductGroup productGroup);
 
     }
 }

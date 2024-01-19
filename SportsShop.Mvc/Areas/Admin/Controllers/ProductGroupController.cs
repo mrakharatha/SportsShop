@@ -2,6 +2,7 @@
 using SportsShop.Application.Interfaces;
 using SportsShop.Application.Security;
 using SportsShop.Domain.Interfaces;
+using SportsShop.Domain.Models.Product;
 
 namespace SportsShop.Mvc.Areas.Admin.Controllers
 {
@@ -25,6 +26,20 @@ namespace SportsShop.Mvc.Areas.Admin.Controllers
         public IActionResult Create()
         {
             return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult Create(ProductGroup productGroup)
+        {
+            if (!ModelState.IsValid)
+                return View(productGroup);
+
+
+
+            _productGroupService.AddProductGroup(productGroup);
+
+            return RedirectToAction("Index");
         }
     }
 }

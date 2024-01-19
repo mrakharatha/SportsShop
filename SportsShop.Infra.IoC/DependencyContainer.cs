@@ -17,6 +17,7 @@ namespace SportsShop.Infra.IoC
             service.AddScoped<IUserService, UserService>();
             service.AddScoped<IOfficeService, OfficeService>();
             service.AddScoped<IProductGroupService, ProductGroupService>();
+            service.AddScoped<IGlobalService, GlobalService>();
 
 
             #endregion
