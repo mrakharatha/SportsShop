@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SportsShop.Application.Helpers;
 using SportsShop.Application.Interfaces;
+using SportsShop.Application.Security;
 using SportsShop.Domain.Security;
 using SportsShop.Domain.ViewModels.User;
 
@@ -21,53 +22,55 @@ namespace SportsShop.Mvc.Areas.Admin.Controllers
         }
 
 
+        [PermissionChecker(7)]
 
         public IActionResult Index()
         {
             return View(_userService.GetAllUsers());
         }
 
-        public IActionResult UserCreate()
+
+        [PermissionChecker(8)]
+
+        public IActionResult Create()
         {
 
             return View();
         }
 
         [HttpPost]
-        public IActionResult UserCreate(CreateUserViewModel user)
+        public IActionResult Create(CreateUserViewModel user)
         {
             if (!ModelState.IsValid)
-            {
-    
                 return View(user);
-            }
+            
 
             if (_userService.IsExistUserName(user.UserName))
             {
                 ModelState.AddModelError("UserName", "نام کاربری معتبر نمی باشد");
-    
+
                 return View(user);
-            } 
+            }
             _userService.AddUserViewModel(user);
 
 
             return RedirectToAction("Index");
         }
-        public IActionResult UserEdit(int id)
+
+        [PermissionChecker(9)]
+        public IActionResult Update(int id)
         {
 
             return View(_userService.GetUserViewModelByUserId(id));
         }
 
         [HttpPost]
-        public IActionResult UserEdit(EditUserViewModel user)
+        public IActionResult Update(EditUserViewModel user)
         {
             if (!ModelState.IsValid)
-            {
-    
                 return View(user);
 
-            }
+
 
             _userService.EditUserViewModel(user);
 
@@ -79,8 +82,8 @@ namespace SportsShop.Mvc.Areas.Admin.Controllers
 
         public RequestResult Delete(int id)
         {
-            if (!_permissionService.CheckPermission(14, User.GetUserId()))
-                return     new RequestResult(false, RequestResultStatusCode.Forbidden);
+            if (!_permissionService.CheckPermission(10, User.GetUserId()))
+                return new RequestResult(false, RequestResultStatusCode.Forbidden);
 
 
             return _userService.DeleteUser(id);

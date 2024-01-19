@@ -16,6 +16,9 @@ namespace SportsShop.Infra.IoC
             service.AddScoped<IPermissionService, PermissionService>();
             service.AddScoped<IUserService, UserService>();
             service.AddScoped<IOfficeService, OfficeService>();
+            service.AddScoped<IProductGroupService, ProductGroupService>();
+
+
             #endregion
 
             #region Infra Data Layer
@@ -23,6 +26,7 @@ namespace SportsShop.Infra.IoC
             service.AddScoped<IPermissionRepository, PermissionRepository>();
             service.AddScoped<IUserRepository, UserRepository>();
             service.AddScoped<IOfficeRepository, OfficeRepository>();
+            service.AddScoped<IProductGroupRepository, ProductGroupRepository>();
 
             #endregion
 

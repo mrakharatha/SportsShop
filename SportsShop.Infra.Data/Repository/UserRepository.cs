@@ -20,8 +20,8 @@ namespace SportsShop.Infra.Data.Repository
 
         public List<User> GetAllUsers()
         {
-            return _context.Users.Where(c=> c.UserId!=1)
-                .OrderByDescending(u => u.CreateDate)
+            return _context.Users.Where(c=> c.Id!=1)
+                .OrderByDescending(u => u.Id)
                 .ToList();
         }
 
@@ -35,18 +35,18 @@ namespace SportsShop.Infra.Data.Repository
         {
             _context.Add(user);
             _context.SaveChanges();
-            return user.UserId;
+            return user.Id;
         }
 
       
         public EditUserViewModel GetUserViewModelByUserId(int userId)
         {
             return _context.Users
-                .Where(u => u.UserId == userId)
+                .Where(u => u.Id == userId)
                 .Select(u => new EditUserViewModel()
                 {
                     FullName = u.FullName,
-                    UserId = u.UserId,
+                    UserId = u.Id,
                     RoleId = u.RoleId,
                 })
                 .First();
@@ -54,7 +54,7 @@ namespace SportsShop.Infra.Data.Repository
 
         public void UpdateUser(User user)
         {
-            var oldUser = GetUserByUserId(user.UserId);
+            var oldUser = GetUserByUserId(user.Id);
             _context.Entry(oldUser).CurrentValues.SetValues(user);
             _context.SaveChanges();
         }
@@ -71,7 +71,7 @@ namespace SportsShop.Infra.Data.Repository
 
         public bool CompareOldPassword(int userId, string oldPassword)
         {
-            return _context.Users.Any(u => u.UserId == userId && u.Password == oldPassword);
+            return _context.Users.Any(u => u.Id == userId && u.Password == oldPassword);
 
         }
 

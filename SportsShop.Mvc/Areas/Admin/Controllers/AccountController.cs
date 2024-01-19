@@ -38,7 +38,7 @@ namespace SportsShop.Mvc.Areas.Admin.Controllers
 
                 var claims = new List<Claim>()
                     {
-                        new Claim(ClaimTypes.NameIdentifier,user.UserId.ToString()),
+                        new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
                         new Claim(ClaimTypes.Name,user.FullName),
                         new Claim(ClaimTypes.Role,"Admin"),
                         new Claim("FullName", user.FullName.ToString()),

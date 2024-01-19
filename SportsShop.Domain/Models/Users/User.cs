@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using SportsShop.Domain.Models.Permissions;
+using SportsShop.Domain.Models.Product;
 using SportsShop.Domain.Models.Stores;
 
 namespace SportsShop.Domain.Models.Users
@@ -9,7 +10,7 @@ namespace SportsShop.Domain.Models.Users
     public class User
     {
         [Key]
-        public int UserId { get; set; }
+        public int Id { get; set; }
 
         [Display(Name = "نقش کاربر")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
@@ -49,8 +50,8 @@ namespace SportsShop.Domain.Models.Users
 
         #region Relations
         public Role  Role { get; set; }
-        public List<Office> Offices { get; set; }
-
+        public ICollection<Office> Offices { get; set; }
+        public ICollection<ProductGroup> ProductGroups { get; set; }
         #endregion
     }
 }

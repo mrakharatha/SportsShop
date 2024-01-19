@@ -19,16 +19,18 @@ namespace SportsShop.Infra.Data.Repository
 
         public List<SelectListItem> GetRoleSelectList()
         {
-            return _context.Roles.Where(x => x.RoleId != 1).Select(r => new SelectListItem()
+            return _context.Roles
+                .OrderByDescending(x=> x.Id)
+                .Where(x => x.Id != 1).Select(r => new SelectListItem()
             {
-                Text = r.RoleTitle,
-                Value = r.RoleId.ToString()
+                Text = r.Title,
+                Value = r.Id.ToString()
             }).ToList();
         }
 
         public List<Role> GetRoles()
         {
-            return _context.Roles.Where(x => x.RoleId != 1).OrderByDescending(r => r.CreateDate).ToList();
+            return _context.Roles.Where(x => x.Id != 1).OrderByDescending(r => r.Id).ToList();
         }
 
         public List<Permission> GetAllPermission()
@@ -40,7 +42,7 @@ namespace SportsShop.Infra.Data.Repository
         {
             _context.Add(role);
             _context.SaveChanges();
-            return role.RoleId;
+            return role.Id;
         }
 
         public void AddRolePermission(List<RolePermission> rolePermissions)
@@ -63,7 +65,7 @@ namespace SportsShop.Infra.Data.Repository
 
         public void UpdateRole(Role role)
         {
-            var oldRole = GetRoleByRoleId(role.RoleId);
+            var oldRole = GetRoleByRoleId(role.Id);
             _context.Entry(oldRole).CurrentValues.SetValues(role);
             _context.SaveChanges();
         }

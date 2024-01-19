@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SportsShop.Application.Helpers;
 using SportsShop.Application.Interfaces;
+using SportsShop.Application.Security;
 using SportsShop.Domain.Models.Permissions;
 using SportsShop.Domain.Security;
 
@@ -18,12 +19,15 @@ namespace SportsShop.Mvc.Areas.Admin.Controllers
         {
             _permissionService = permissionService;
         }
+
+        [PermissionChecker(3)]
         public IActionResult Index()
         {
             return View(_permissionService.GetRoles());
         }
+        [PermissionChecker(4)]
 
-        public IActionResult RoleCreate()
+        public IActionResult Create()
         {
             return View();
         }
@@ -31,12 +35,11 @@ namespace SportsShop.Mvc.Areas.Admin.Controllers
 
 
         [HttpPost]
-        public IActionResult RoleCreate(Role role, List<int> selectedPermission)
+        public IActionResult Create(Role role, List<int> selectedPermission)
         {
             if (!ModelState.IsValid)
-            {
                 return View();
-            }
+            
 
             int roleId = _permissionService.AddRole(role);
 
@@ -45,29 +48,29 @@ namespace SportsShop.Mvc.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        [PermissionChecker(5)]
 
-        public IActionResult RoleEdit(int id)
+        public IActionResult Update(int id)
         {
             return View(_permissionService.GetRoleByRoleId(id));
         }
 
         [HttpPost]
-        public IActionResult RoleEdit(Role role, List<int> selectedPermission)
+        public IActionResult Update(Role role, List<int> selectedPermission)
         {
             if (!ModelState.IsValid)
-            {
                 return View(role);
-            }
+            
 
             _permissionService.UpdateRole(role);
-            _permissionService.UpdatePermissionsRole(role.RoleId, selectedPermission);
+            _permissionService.UpdatePermissionsRole(role.Id, selectedPermission);
 
             return RedirectToAction("Index");
         }
 
         public RequestResult Delete(int id)
         {
-            if (!_permissionService.CheckPermission(14, User.GetUserId()))
+            if (!_permissionService.CheckPermission(6, User.GetUserId()))
                 return new RequestResult(false, RequestResultStatusCode.Forbidden);
 
 

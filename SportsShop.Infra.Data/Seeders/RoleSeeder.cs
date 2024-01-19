@@ -11,8 +11,8 @@ namespace SportsShop.Infra.Data.Seeders
         {
             builder.HasData(new Role
             {
-                RoleId = 1,
-                RoleTitle = "مدیر",
+                Id = 1,
+                Title = "مدیر",
                 CreateDate = new DateTime(2023, 12, 20, 19, 17, 32, 968, DateTimeKind.Local).AddTicks(1379)
             });
         }

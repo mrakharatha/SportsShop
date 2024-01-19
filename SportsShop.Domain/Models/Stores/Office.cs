@@ -9,7 +9,7 @@ namespace SportsShop.Domain.Models.Stores
 	public class Office
 	{
 		[Key]
-		public int OfficeId { get; set; }
+		public int Id { get; set; }
 
 		public int UserId { get; set; }
 		[Display(Name = "نام فروشگاه")]

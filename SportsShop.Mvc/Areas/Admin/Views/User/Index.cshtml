@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="card-header">
-                    <a asp-area="Admin" asp-controller="User" asp-action="UserCreate" type="button" class="btn col-lg-1  btn-primary  mr-1 mb-1">افزودن</a>
+                    <a asp-area="Admin" asp-controller="User" asp-action="Create" type="button" class="btn col-lg-1  btn-primary  mr-1 mb-1">افزودن</a>
                 </div>
                 <div class="card-content">
                     <div class="card-body card-dashboard">
@@ -64,21 +64,18 @@
                                 @foreach (var item in Model)
                                 {
                                     
-                                    <tr id="User_@(item.UserId)">
+                                    <tr id="User_@(item.Id)">
                                         <td>@cnt</td>
                                         <td>@item.FullName</td>
                                         <td>@item.UserName</td>
                                         <td>@item.CreateDate.ToShamsi()</td>
                                         <td>
-
-
-
                                             <div class="dropup">
                                                 <span style="padding: 0 20px" class="fas fa-ellipsis-v  dropdown-toggle cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                 </span>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="UserEdit" asp-route-id="@item.UserId"><i class="far fa-edit mr-1"></i> ویرایش</a>
-                                                    <a class="dropdown-item" onclick="DeleteUser(@item.UserId)"><i class="far fa-trash-alt mr-1"></i> حذف</a>
+                                                        <a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="Update" asp-route-id="@item.Id"><i class="far fa-edit mr-1"></i> ویرایش</a>
+                                                    <a class="dropdown-item" onclick="DeleteUser(@item.Id)"><i class="far fa-trash-alt mr-1"></i> حذف</a>
                                                 </div>
                                             </div>
                                         </td>

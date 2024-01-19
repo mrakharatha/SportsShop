@@ -5,7 +5,7 @@
 @{
     ViewData["Title"] = "ویرایش نقش";
     List<Permission> permissions = PermissionService.GetAllPermission();
-    List<int> selectedPermissions = PermissionService.PermissionsRole(Model.RoleId);
+    List<int> selectedPermissions = PermissionService.PermissionsRole(Model.Id);
     Layout = "_DefaultAdminLayout";
 }
 
@@ -41,14 +41,14 @@
                             <div class="form-body">
                                     <div class="col-md-12">
                                         <div class="panel panel-primary">
-                                            <input type="hidden" asp-for="RoleId" />
+                                            <input type="hidden" asp-for="Id" />
                                             <input type="hidden" asp-for="CreateDate" />
 
                                             <!-- /.panel-heading -->
                                             <div class="panel-body">
                                                 <div class="form-group">
-                                                    <input autocomplete="off" placeholder="عنوان نقش" type="text" asp-for="RoleTitle" class="form-control">
-                                                    <span asp-validation-for="RoleTitle" class="text-danger"></span>
+                                                    <input autocomplete="off" placeholder="عنوان نقش" type="text" asp-for="Title" class="form-control">
+                                                    <span asp-validation-for="Title" class="text-danger"></span>
 
                                                 </div>
                                                 <div class="form-group">

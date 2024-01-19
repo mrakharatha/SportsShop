@@ -119,7 +119,7 @@ namespace SportsShop.Application.Services
 
             var role = GetRoleByRoleId(roleId);
 
-            if (role.RoleId == 1 |  CheckDelete(roleId)||role.RoleId==roleId)
+            if (role.Id == 1 |  CheckDelete(roleId)||role.Id==roleId)
                 return new RequestResult(false, RequestResultStatusCode.InternalServerError, "نقش در سیستم استفاده شده است!");
          
             role.DeleteDate = DateTime.Now;

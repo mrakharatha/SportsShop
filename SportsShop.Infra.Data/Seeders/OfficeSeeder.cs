@@ -13,7 +13,7 @@ namespace SportsShop.Infra.Data.Seeders
 
 			builder.HasData(new Office
 			{
-				OfficeId = 1,
+				Id = 1,
 				Name = "فروشگاه ورزشی نقش اسکیت",
 				Address = "یزد،صفائیه،میدان اطلسی",
 				Email = "hosseion4016@gmail.com",

@@ -113,7 +113,7 @@ namespace SportsShop.Application.Services
             var user = _userRepository.GetUserByUserId(userId);
             if (user == null) return new RequestResult(false, RequestResultStatusCode.InternalServerError);
 
-            if (CheckDelete(userId) || user.UserId == userId)
+            if (CheckDelete(userId) || user.Id == userId)
                 return new RequestResult(false, RequestResultStatusCode.InternalServerError, "کاربر در سیستم استفاده شده است!");
 
             user.DeleteDate = DateTime.Now;

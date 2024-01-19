@@ -1,11 +1,15 @@
-﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
-@using SportsShop.Domain.Convertors
-@model List<SportsShop.Domain.Models.Permissions.Role>
+﻿@using SportsShop.Domain.Convertors
+@model List<SportsShop.Domain.Models.Product.ProductGroup>
 @{
-    ViewData["Title"] = "سطح دسترسی";
+    ViewData["Title"] = " گروه کالا";
     int cnt = 1;
     Layout = "_DefaultAdminLayout";
 }
+
+
+
+
+
 
 <div class="content-header row">
     <div class="content-header-left col-12 mb-2 mt-1">
@@ -18,7 +22,7 @@
                         </li>
 
                         <li class="breadcrumb-item active">
-                            <a href="#"> لیست نقش ها </a>
+                            <a href="#"> لیست  گروه کالا  </a>
                         </li>
                     </ol>
                 </div>
@@ -31,13 +35,12 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-
                 <div class="card-header bg-white search-box">
                     <input type="text" id="mySearchText" class="form-control" placeholder="جستجو ...">
                 </div>
 
                 <div class="card-header">
-                    <a asp-area="Admin" asp-controller="Role" asp-action="Create" type="button" class="btn col-lg-1  btn-primary  mr-1 mb-1">افزودن</a>
+                    <a asp-area="Admin" asp-controller="ProductGroup" asp-action="Create" type="button" class="btn col-lg-1  btn-primary  mr-1 mb-1">افزودن</a>
                 </div>
                 <div class="card-content">
                     <div class="card-body card-dashboard">
@@ -46,7 +49,11 @@
                                 <thead>
                                     <tr>
                                         <th>ردیف</th>
-                                        <th>نام نقش</th>
+                                        <th>عنوان</th>
+                                        <th>سرگروه</th>
+                                        <th>وضعیت</th>
+                                        <th>الویت</th>
+                                        <th>ایجاد کننده</th>
                                         <th>تاریخ ثبت</th>
                                         <th>عملیات</th>
                                     </tr>
@@ -54,17 +61,22 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-                                        <tr id="Role_@(item.Id)">
+
+                                        <tr id="ProductGroup_@(item.Id)">
                                             <td>@cnt</td>
-                                            <td>@item.Title</td>
+                                            <td>@item.Name</td>
+                                            <td>@((item.ParentGroup!=null)?item.ParentGroup.Name:"-")</td>
+                                            <td>@((item.Status)?"فعال":"غیرفعال")</td>
+                                            <td>@item.Priority</td>
+                                            <td>@item.User.FullName</td>
                                             <td>@item.CreateDate.ToShamsi()</td>
                                             <td>
                                                 <div class="dropup">
                                                     <span style="padding: 0 20px" class="fas fa-ellipsis-v  dropdown-toggle cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                     </span>
                                                     <div class="dropdown-menu">
-                                                        <a class="dropdown-item" asp-controller="Role" asp-action="Update" asp-route-id="@item.Id" asp-area="Admin"><i class="far fa-edit mr-1"></i> ویرایش</a>
-                                                        <a class="dropdown-item" onclick="DeleteRole(@item.Id)"><i class="far fa-trash-alt mr-1"></i> حذف</a>
+                                                        <a class="dropdown-item" asp-area="Admin" asp-controller="ProductGroup" asp-action="Update" asp-route-id="@item.Id"><i class="far fa-edit mr-1"></i> ویرایش</a>
+                                                        <a class="dropdown-item" onclick="DeleteProductGroup(@item.Id)"><i class="far fa-trash-alt mr-1"></i> حذف</a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -95,13 +107,14 @@
     <script src="/Admin/assets/vendors/js/tables/datatable/datatables.min.js"></script>
     <script src="/Admin/assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js"></script>
     <script src="/Admin/assets/js/scripts/datatables/datatable.js"></script>
-    
-    <script src="~/Admin/assets/js/scripts/configDataTable.js"></script>
 
+    <script src="/Admin/assets/js/scripts/configDataTable.js"></script>
 
 
     <script type="text/javascript">
-        function DeleteRole(id) {
+
+        function DeleteProductGroup (id) {
+
             Swal.fire({
                 title: 'آیا مطمئنید؟',
                 text: "این عمل قابل بازگشت نخواهد بود!",
@@ -112,12 +125,10 @@
                 cancelButtonClass: 'btn btn-danger ml-1',
                 cancelButtonText: 'انصراف',
                 buttonsStyling: false,
-            }).then(function(result) {
+            }).then(function (result) {
                 if (result.value) {
-                    $.get("/Admin/Role/Delete/" + id,
-                        function(data) {
-
-
+                    $.get("/Admin/ProductGroup/Delete/" + id,
+                        function (data) {
                             if (data.isSuccess) {
                                 Swal.fire({
                                     type: "success",
@@ -127,7 +138,7 @@
                                     confirmButtonText: 'باشه',
                                 });
 
-                                $("#Role_" + id).hide('slow');
+                                $("#ProductGroup_" + id).hide('slow');
                             }
                             else {
                                 Swal.fire({
@@ -139,7 +150,7 @@
                                     buttonsStyling: false,
                                 });
                             }
-                            });
+                        });
                 }
             });
 
@@ -147,6 +158,4 @@
 
     </script>
 
-
-
-    }
+}

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SportsShop.Infra.Data.Context;
 
 namespace SportsShop.Infra.Data.Migrations
 {
     [DbContext(typeof(SportsShopDbContext))]
-    partial class SportsShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240119081657_AddTblProductGroup")]
+    partial class AddTblProductGroup
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -75,62 +77,33 @@ namespace SportsShop.Infra.Data.Migrations
                         },
                         new
                         {
-                            PermissionId = 7,
+                            PermissionId = 11,
                             ParentId = 2,
                             PermissionTitle = "کاربران"
                         },
                         new
                         {
-                            PermissionId = 8,
-                            ParentId = 7,
+                            PermissionId = 12,
+                            ParentId = 11,
                             PermissionTitle = "افزودن کاربران"
                         },
                         new
                         {
-                            PermissionId = 9,
-                            ParentId = 7,
+                            PermissionId = 13,
+                            ParentId = 11,
                             PermissionTitle = "ویرایش کاربران"
                         },
                         new
                         {
-                            PermissionId = 10,
-                            ParentId = 7,
-                            PermissionTitle = "حذف کاربران"
-                        },
-                        new
-                        {
-                            PermissionId = 11,
-                            PermissionTitle = "فروشگاه"
-                        },
-                        new
-                        {
-                            PermissionId = 12,
-                            ParentId = 11,
-                            PermissionTitle = "گروه کالا"
-                        },
-                        new
-                        {
-                            PermissionId = 13,
-                            ParentId = 12,
-                            PermissionTitle = "افزودن گروه کالا"
-                        },
-                        new
-                        {
                             PermissionId = 14,
-                            ParentId = 12,
-                            PermissionTitle = "ویرایش گروه کالا"
-                        },
-                        new
-                        {
-                            PermissionId = 15,
-                            ParentId = 12,
-                            PermissionTitle = "حذف گروه کالا"
+                            ParentId = 11,
+                            PermissionTitle = "حذف کاربران"
                         });
                 });
 
             modelBuilder.Entity("SportsShop.Domain.Models.Permissions.Role", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("RoleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -145,7 +118,7 @@ namespace SportsShop.Infra.Data.Migrations
                         .HasMaxLength(400)
                         .HasColumnType("nvarchar(400)");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("RoleTitle")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
@@ -153,16 +126,16 @@ namespace SportsShop.Infra.Data.Migrations
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.HasKey("RoleId");
 
                     b.ToTable("Roles");
 
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            RoleId = 1,
                             CreateDate = new DateTime(2023, 12, 20, 19, 17, 32, 968, DateTimeKind.Local).AddTicks(1379),
-                            Title = "مدیر"
+                            RoleTitle = "مدیر"
                         });
                 });
 
@@ -232,7 +205,7 @@ namespace SportsShop.Infra.Data.Migrations
 
             modelBuilder.Entity("SportsShop.Domain.Models.Stores.Office", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("OfficeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -317,7 +290,7 @@ namespace SportsShop.Infra.Data.Migrations
                     b.Property<string>("YouTube")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("OfficeId");
 
                     b.HasIndex("UserId");
 
@@ -326,7 +299,7 @@ namespace SportsShop.Infra.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            OfficeId = 1,
                             Address = "یزد،صفائیه،میدان اطلسی",
                             CreateDate = new DateTime(2023, 12, 20, 19, 17, 32, 968, DateTimeKind.Local).AddTicks(1379),
                             Email = "hosseion4016@gmail.com",
@@ -343,7 +316,7 @@ namespace SportsShop.Infra.Data.Migrations
 
             modelBuilder.Entity("SportsShop.Domain.Models.Users.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -376,7 +349,7 @@ namespace SportsShop.Infra.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("Id");
+                    b.HasKey("UserId");
 
                     b.HasIndex("RoleId");
 
@@ -385,7 +358,7 @@ namespace SportsShop.Infra.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            UserId = 1,
                             CreateDate = new DateTime(2023, 12, 20, 19, 23, 0, 0, DateTimeKind.Local).AddTicks(2972),
                             FullName = "سوپر ادمین",
                             Password = "7D-A1-88-C2-E2-D8-3E-38-B7-D9-E7-5E-50-0F-1A-F8",
