@@ -65,10 +65,10 @@
                                         <tr id="ProductGroup_@(item.Id)">
                                             <td>@cnt</td>
                                             <td>@item.Name</td>
-                                            <td>@((item.ParentGroup!=null)?item.ParentGroup.Name:"-")</td>
-                                            <td>@((item.Status)?"فعال":"غیرفعال")</td>
+                                            <td>@((item.ParentGroup != null) ? item.ParentGroup.Name : "-")</td>
+                                            <td>@((item.Status) ? "فعال" : "غیرفعال")</td>
                                             <td>@item.Priority</td>
-                                            <td>@item.User.FullName</td>
+                                            <td>@((item.UserId != 1) ? item.User.FullName : "-")</td>
                                             <td>@item.CreateDate.ToShamsi()</td>
                                             <td>
                                                 <div class="dropup">

@@ -9,6 +9,9 @@ namespace SportsShop.Domain.Interfaces
         List<ProductGroup> GetAll();
         List<SelectListItem> GetAllProductGroups(bool checkIsNullParent);
         void AddProductGroup(ProductGroup productGroup);
+        void UpdateProductGroup(ProductGroup productGroup);
+        ProductGroup GetProductGroupById(int productGroupId);
+        bool IsExist(int productGroupId);
 
     }
 }

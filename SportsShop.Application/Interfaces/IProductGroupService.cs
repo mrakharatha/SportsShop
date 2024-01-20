@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using SportsShop.Application.Helpers;
 using SportsShop.Domain.Models.Product;
 
 namespace SportsShop.Application.Interfaces
@@ -11,5 +12,9 @@ namespace SportsShop.Application.Interfaces
         List<SelectListItem> GetAllProductGroups(bool checkIsNullParent);
 
         void AddProductGroup(ProductGroup productGroup);
+        void UpdateProductGroup(ProductGroup productGroup);
+        ProductGroup GetProductGroupById(int productGroupId);
+        RequestResult DeleteProductGroup(int productGroupId);
+        bool IsExist(int productGroupId);
     }
 }
