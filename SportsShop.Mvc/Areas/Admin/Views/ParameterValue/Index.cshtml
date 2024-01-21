@@ -1,8 +1,9 @@
 ﻿@using SportsShop.Domain.Convertors
-@model List<SportsShop.Domain.Models.Products.Parameter>
+@model List<SportsShop.Domain.Models.Products.ParameterValue>
 @{
-    ViewData["Title"] = " پارامتر کالا";
+    ViewData["Title"] = " مقادیر پارامتر کالا";
     int cnt = 1;
+    
     Layout = "_DefaultAdminLayout";
 }
 
@@ -20,9 +21,11 @@
                         <li class="breadcrumb-item">
                             <a asp-controller="Home" asp-action="Index" asp-area="Admin"><i class="mdi mdi-home"></i></a>
                         </li>
-
+                        <li class="breadcrumb-item">
+                            <a asp-controller="Parameter" asp-action="Index" asp-area="Admin">لیست پارامتر کالا</a>
+                        </li>
                         <li class="breadcrumb-item active">
-                            <a href="#"> لیست  پارامتر کالا  </a>
+                            <a href="#"> لیست  مقادیر پارامتر کالا  </a>
                         </li>
                     </ol>
                 </div>
@@ -40,7 +43,7 @@
                 </div>
 
                 <div class="card-header">
-                    <a asp-area="Admin" asp-controller="Parameter" asp-action="Create" type="button" class="btn col-lg-1  btn-primary  mr-1 mb-1">افزودن</a>
+                    <a asp-area="Admin" asp-controller="ParameterValue" asp-action="Create" asp-route-parameterId="@ViewBag.ParameterId" type="button" class="btn col-lg-1  btn-primary  mr-1 mb-1">افزودن</a>
                 </div>
                 <div class="card-content">
                     <div class="card-body card-dashboard">
@@ -59,7 +62,7 @@
                                     @foreach (var item in Model)
                                     {
 
-                                        <tr id="Parameter_@(item.Id)">
+                                        <tr id="ParameterValue_@(item.Id)">
                                             <td>@cnt</td>
                                             <td>@item.Name</td>
                                             <td>@((item.UserId != 1) ? item.User.FullName : "-")</td>
@@ -69,9 +72,8 @@
                                                     <span style="padding: 0 20px" class="fas fa-ellipsis-v  dropdown-toggle cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                     </span>
                                                     <div class="dropdown-menu">
-                                                        <a class="dropdown-item" asp-area="Admin" asp-controller="ParameterValue" asp-action="Index" asp-route-id="@item.Id"><i class="far fa-eye mr-1"></i>مقادیر پارامتر</a>
-                                                        <a class="dropdown-item" asp-area="Admin" asp-controller="Parameter" asp-action="Update" asp-route-id="@item.Id"><i class="far fa-edit mr-1"></i> ویرایش</a>
-                                                        <a class="dropdown-item" onclick="DeleteParameter(@item.Id)"><i class="far fa-trash-alt mr-1"></i> حذف</a>
+                                                        <a class="dropdown-item" asp-area="Admin" asp-controller="ParameterValue" asp-action="Update" asp-route-id="@item.Id"><i class="far fa-edit mr-1"></i> ویرایش</a>
+                                                        <a class="dropdown-item" onclick="DeleteParameterValue(@item.Id)"><i class="far fa-trash-alt mr-1"></i> حذف</a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -104,11 +106,15 @@
     <script src="/Admin/assets/js/scripts/datatables/datatable.js"></script>
 
     <script src="/Admin/assets/js/scripts/configDataTable.js"></script>
-
+    <script>
+        $("#store").addClass('active');
+        $("a[href='#store']").addClass('active');
+        $("#Parameter").addClass('active');
+    </script>
 
     <script type="text/javascript">
 
-        function DeleteParameter (id) {
+        function DeleteParameterValue (id) {
 
             Swal.fire({
                 title: 'آیا مطمئنید؟',
@@ -122,7 +128,7 @@
                 buttonsStyling: false,
             }).then(function (result) {
                 if (result.value) {
-                    $.get("/Admin/Parameter/Delete/" + id,
+                    $.get("/Admin/ParameterValue/Delete/" + id,
                         function (data) {
                             if (data.isSuccess) {
                                 Swal.fire({
@@ -133,7 +139,7 @@
                                     confirmButtonText: 'باشه',
                                 });
 
-                                $("#Parameter_" + id).hide('slow');
+                                $("#ParameterValue_" + id).hide('slow');
                             }
                             else {
                                 Swal.fire({
