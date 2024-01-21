@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using SportsShop.Application.Helpers;
 using SportsShop.Application.Interfaces;
 using SportsShop.Domain.Interfaces;
-using SportsShop.Domain.Models.Product;
+using SportsShop.Domain.Models.Products;
 using SportsShop.Domain.Models.Users;
 
 namespace SportsShop.Application.Services
@@ -57,7 +57,7 @@ namespace SportsShop.Application.Services
 
         public RequestResult DeleteProductGroup(int productGroupId)
         {
-            var productGroup = _productGroupRepository.GetProductGroupById(productGroupId);
+            var productGroup = GetProductGroupById(productGroupId);
             if (productGroup == null) return new RequestResult(false, RequestResultStatusCode.InternalServerError);
 
             if (IsExist(productGroupId))

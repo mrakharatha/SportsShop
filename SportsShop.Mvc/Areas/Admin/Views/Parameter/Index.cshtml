@@ -1,7 +1,7 @@
 ﻿@using SportsShop.Domain.Convertors
-@model List<SportsShop.Domain.Models.Products.ProductGroup>
+@model List<SportsShop.Domain.Models.Products.Parameter>
 @{
-    ViewData["Title"] = " گروه کالا";
+    ViewData["Title"] = " پارامتر کالا";
     int cnt = 1;
     Layout = "_DefaultAdminLayout";
 }
@@ -22,7 +22,7 @@
                         </li>
 
                         <li class="breadcrumb-item active">
-                            <a href="#"> لیست  گروه کالا  </a>
+                            <a href="#"> لیست  پارامتر کالا  </a>
                         </li>
                     </ol>
                 </div>
@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="card-header">
-                    <a asp-area="Admin" asp-controller="ProductGroup" asp-action="Create" type="button" class="btn col-lg-1  btn-primary  mr-1 mb-1">افزودن</a>
+                    <a asp-area="Admin" asp-controller="Parameter" asp-action="Create" type="button" class="btn col-lg-1  btn-primary  mr-1 mb-1">افزودن</a>
                 </div>
                 <div class="card-content">
                     <div class="card-body card-dashboard">
@@ -50,9 +50,6 @@
                                     <tr>
                                         <th>ردیف</th>
                                         <th>عنوان</th>
-                                        <th>سرگروه</th>
-                                        <th>وضعیت</th>
-                                        <th>الویت</th>
                                         <th>ایجاد کننده</th>
                                         <th>تاریخ ثبت</th>
                                         <th>عملیات</th>
@@ -62,12 +59,9 @@
                                     @foreach (var item in Model)
                                     {
 
-                                        <tr id="ProductGroup_@(item.Id)">
+                                        <tr id="Parameter_@(item.Id)">
                                             <td>@cnt</td>
                                             <td>@item.Name</td>
-                                            <td>@((item.ParentGroup != null) ? item.ParentGroup.Name : "-")</td>
-                                            <td>@((item.Status) ? "فعال" : "غیرفعال")</td>
-                                            <td>@item.Priority</td>
                                             <td>@((item.UserId != 1) ? item.User.FullName : "-")</td>
                                             <td>@item.CreateDate.ToShamsiTime()</td>
                                             <td>
@@ -75,8 +69,8 @@
                                                     <span style="padding: 0 20px" class="fas fa-ellipsis-v  dropdown-toggle cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                                                     </span>
                                                     <div class="dropdown-menu">
-                                                        <a class="dropdown-item" asp-area="Admin" asp-controller="ProductGroup" asp-action="Update" asp-route-id="@item.Id"><i class="far fa-edit mr-1"></i> ویرایش</a>
-                                                        <a class="dropdown-item" onclick="DeleteProductGroup(@item.Id)"><i class="far fa-trash-alt mr-1"></i> حذف</a>
+                                                        <a class="dropdown-item" asp-area="Admin" asp-controller="Parameter" asp-action="Update" asp-route-id="@item.Id"><i class="far fa-edit mr-1"></i> ویرایش</a>
+                                                        <a class="dropdown-item" onclick="DeleteParameter(@item.Id)"><i class="far fa-trash-alt mr-1"></i> حذف</a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -113,7 +107,7 @@
 
     <script type="text/javascript">
 
-        function DeleteProductGroup (id) {
+        function DeleteParameter (id) {
 
             Swal.fire({
                 title: 'آیا مطمئنید؟',
@@ -127,7 +121,7 @@
                 buttonsStyling: false,
             }).then(function (result) {
                 if (result.value) {
-                    $.get("/Admin/ProductGroup/Delete/" + id,
+                    $.get("/Admin/Parameter/Delete/" + id,
                         function (data) {
                             if (data.isSuccess) {
                                 Swal.fire({
@@ -138,7 +132,7 @@
                                     confirmButtonText: 'باشه',
                                 });
 
-                                $("#ProductGroup_" + id).hide('slow');
+                                $("#Parameter_" + id).hide('slow');
                             }
                             else {
                                 Swal.fire({

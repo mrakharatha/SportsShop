@@ -3,30 +3,30 @@ using SportsShop.Application.Helpers;
 using SportsShop.Application.Interfaces;
 using SportsShop.Application.Security;
 using SportsShop.Application.Services;
-using SportsShop.Domain.Interfaces;
 using SportsShop.Domain.Models.Products;
 using SportsShop.Domain.Security;
 
 namespace SportsShop.Mvc.Areas.Admin.Controllers
 {
-    public class ProductGroupController : BaseController
+    public class ParameterController : BaseController
     {
-        private readonly IProductGroupService _productGroupService;
+        private readonly IParameterService _parameterService;
         private readonly IPermissionService _permissionService;
-        public ProductGroupController(IProductGroupService productGroupService, IPermissionService permissionService)
+        public ParameterController(IParameterService parameterService, IPermissionService permissionService)
         {
-            _productGroupService = productGroupService;
+            _parameterService = parameterService;
             _permissionService = permissionService;
         }
 
-        [PermissionChecker(12)]
+
+        [PermissionChecker(16)]
         public IActionResult Index()
         {
-            return View(_productGroupService.GetAll());
+            return View(_parameterService.GetAll());
         }
 
 
-        [PermissionChecker(13)]
+        [PermissionChecker(17)]
         public IActionResult Create()
         {
             return View();
@@ -34,33 +34,32 @@ namespace SportsShop.Mvc.Areas.Admin.Controllers
 
 
         [HttpPost]
-        public IActionResult Create(ProductGroup productGroup)
+        public IActionResult Create(Parameter parameter)
         {
             if (!ModelState.IsValid)
-                return View(productGroup);
+                return View(parameter);
 
 
 
-            _productGroupService.AddProductGroup(productGroup);
-
+            _parameterService.AddParameter(parameter);
             return RedirectToAction("Index");
         }
 
-        [PermissionChecker(14)]
+        [PermissionChecker(18)]
         public IActionResult Update(int id)
         {
-            return View(_productGroupService.GetProductGroupById(id));
+            return View(_parameterService.GetParameterById(id));
         }
 
 
         [HttpPost]
-        public IActionResult Update(ProductGroup productGroup)
+        public IActionResult Update(Parameter parameter)
         {
             if (!ModelState.IsValid)
-                return View(productGroup);
+                return View(parameter);
 
 
-            _productGroupService.UpdateProductGroup(productGroup);
+            _parameterService.UpdateParameter(parameter);
             return RedirectToAction("Index");
         }
 
@@ -68,12 +67,11 @@ namespace SportsShop.Mvc.Areas.Admin.Controllers
 
         public RequestResult Delete(int id)
         {
-            if (!_permissionService.CheckPermission(15, User.GetUserId()))
+            if (!_permissionService.CheckPermission(19, User.GetUserId()))
                 return new RequestResult(false, RequestResultStatusCode.Forbidden);
 
 
-            return _productGroupService.DeleteProductGroup(id);
+            return _parameterService.DeleteParameter(id);
         }
-
     }
 }

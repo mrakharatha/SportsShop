@@ -30,6 +30,16 @@ namespace SportsShop.Infra.Data.Seeders
                 new Permission(){PermissionId = 14,PermissionTitle = "ویرایش گروه کالا",ParentId = 12},
                 new Permission(){PermissionId = 15,PermissionTitle = "حذف گروه کالا",ParentId = 12},
 
+
+                new Permission(){PermissionId = 16,PermissionTitle = "پارامتر کالا",ParentId = 11},
+                new Permission(){PermissionId = 17,PermissionTitle = "افزودن پارامتر کالا",ParentId = 16},
+                new Permission(){PermissionId = 18,PermissionTitle = "ویرایش پارامتر کالا",ParentId = 16},
+                new Permission(){PermissionId = 19,PermissionTitle = "حذف پارامتر کالا",ParentId = 16},
+                
+                new Permission(){PermissionId = 20,PermissionTitle = "مقادیر پارامتر کالا",ParentId = 16},
+                new Permission(){PermissionId = 21,PermissionTitle = "افزودن مقادیر پارامتر کالا",ParentId = 20},
+                new Permission(){PermissionId = 22,PermissionTitle = "ویرایش مقادیر پارامتر کالا",ParentId = 20},
+                new Permission(){PermissionId = 23,PermissionTitle = "حذف مقادیر پارامتر کالا",ParentId = 20},
             });
         }
     }

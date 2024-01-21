@@ -113,6 +113,13 @@
                                 <a class="nav-link" id="ProductGroup" asp-controller="ProductGroup" asp-action="Index" asp-area="Admin"><i class="dripicons-view-thumb"></i>گروه کالا</a>
                         </li>
                     }
+                    
+                    @if (PermissionService.CheckPermission(16, userId))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" id="Parameter" asp-controller="Parameter" asp-action="Index" asp-area="Admin"><i class="dripicons-view-thumb"></i>پارامتر کالا</a>
+                        </li>
+                    }
                     </ul>
                 </div>
             }

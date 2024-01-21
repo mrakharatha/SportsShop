@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using SportsShop.Domain.Models.Product;
 using System.Collections.Generic;
+using SportsShop.Domain.Models.Products;
 
 namespace SportsShop.Domain.Interfaces
 {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using SportsShop.Domain.Models.Permissions;
-using SportsShop.Domain.Models.Product;
+using SportsShop.Domain.Models.Products;
 using SportsShop.Domain.Models.Stores;
 
 namespace SportsShop.Domain.Models.Users
@@ -52,6 +52,9 @@ namespace SportsShop.Domain.Models.Users
         public Role  Role { get; set; }
         public ICollection<Office> Offices { get; set; }
         public ICollection<ProductGroup> ProductGroups { get; set; }
+        public ICollection<Parameter> Parameters { get; set; }
+        public ICollection<ParameterValue> ParameterValues { get; set; }
+
         #endregion
     }
 }

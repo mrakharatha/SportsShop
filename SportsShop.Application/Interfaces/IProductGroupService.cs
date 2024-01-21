@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SportsShop.Application.Helpers;
-using SportsShop.Domain.Models.Product;
+using SportsShop.Domain.Models.Products;
 
 namespace SportsShop.Application.Interfaces
 {

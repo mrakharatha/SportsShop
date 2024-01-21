@@ -3,7 +3,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SportsShop.Domain.Interfaces;
-using SportsShop.Domain.Models.Product;
+using SportsShop.Domain.Models.Products;
 using SportsShop.Infra.Data.Context;
 
 namespace SportsShop.Infra.Data.Repository

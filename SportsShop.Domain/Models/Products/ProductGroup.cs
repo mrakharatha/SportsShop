@@ -1,9 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using SportsShop.Domain.Models.Users;
-using System;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SportsShop.Domain.Models.Product
+namespace SportsShop.Domain.Models.Products
 {
     public class ProductGroup:BaseEntity
     {

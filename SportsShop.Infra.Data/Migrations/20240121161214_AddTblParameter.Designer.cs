@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SportsShop.Infra.Data.Context;
 
 namespace SportsShop.Infra.Data.Migrations
 {
     [DbContext(typeof(SportsShopDbContext))]
-    partial class SportsShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240121161214_AddTblParameter")]
+    partial class AddTblParameter
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -149,30 +151,6 @@ namespace SportsShop.Infra.Data.Migrations
                             PermissionId = 19,
                             ParentId = 16,
                             PermissionTitle = "حذف پارامتر کالا"
-                        },
-                        new
-                        {
-                            PermissionId = 20,
-                            ParentId = 16,
-                            PermissionTitle = "مقادیر پارامتر کالا"
-                        },
-                        new
-                        {
-                            PermissionId = 21,
-                            ParentId = 20,
-                            PermissionTitle = "افزودن مقادیر پارامتر کالا"
-                        },
-                        new
-                        {
-                            PermissionId = 22,
-                            ParentId = 20,
-                            PermissionTitle = "ویرایش مقادیر پارامتر کالا"
-                        },
-                        new
-                        {
-                            PermissionId = 23,
-                            ParentId = 20,
-                            PermissionTitle = "حذف مقادیر پارامتر کالا"
                         });
                 });
 
@@ -265,42 +243,6 @@ namespace SportsShop.Infra.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Parameters");
-                });
-
-            modelBuilder.Entity("SportsShop.Domain.Models.Products.ParameterValue", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeleteDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("ParameterId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ParameterId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("ParameterValues");
                 });
 
             modelBuilder.Entity("SportsShop.Domain.Models.Products.ProductGroup", b =>
@@ -547,25 +489,6 @@ namespace SportsShop.Infra.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("SportsShop.Domain.Models.Products.ParameterValue", b =>
-                {
-                    b.HasOne("SportsShop.Domain.Models.Products.Parameter", "Parameter")
-                        .WithMany("ParameterValues")
-                        .HasForeignKey("ParameterId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("SportsShop.Domain.Models.Users.User", "User")
-                        .WithMany("ParameterValues")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Parameter");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("SportsShop.Domain.Models.Products.ProductGroup", b =>
                 {
                     b.HasOne("SportsShop.Domain.Models.Products.ProductGroup", "ParentGroup")
@@ -619,18 +542,11 @@ namespace SportsShop.Infra.Data.Migrations
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("SportsShop.Domain.Models.Products.Parameter", b =>
-                {
-                    b.Navigation("ParameterValues");
-                });
-
             modelBuilder.Entity("SportsShop.Domain.Models.Users.User", b =>
                 {
                     b.Navigation("Offices");
 
                     b.Navigation("Parameters");
-
-                    b.Navigation("ParameterValues");
 
                     b.Navigation("ProductGroups");
                 });
