@@ -1,0 +1,96 @@
+﻿@using SportsShop.Domain.Models.Permissions
+@using SportsShop.Application.Interfaces
+@using SportsShop.Domain.Security
+@model SportsShop.Domain.Models.Products.Brand
+@{
+    ViewData["Title"] = "افزودن برند کالا";
+    Layout = "_DefaultAdminLayout";
+}
+
+
+<div class="content-header row">
+    <div class="content-header-left col-12 mb-2 mt-1">
+        <div class="row breadcrumbs-top">
+            <div class="col-12">
+                <div class="breadcrumb-wrapper">
+                    <ol class="breadcrumb p-0 mb-0">
+                        <li class="breadcrumb-item">
+                            <a asp-controller="Home" asp-action="Index" asp-area="Admin"><i class="mdi mdi-home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a asp-controller="Brand" asp-action="Index" asp-area="Admin">لیست برند کالا</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <a href="#">افزودن برند کالا</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="col-md-12 col-12">
+    <div class="card">
+
+        <div class="card-content">
+            <div class="card-body">
+                <form class="form form-vertical" method="post">
+                    <div class="form-body">
+                        <div class="row">
+                            
+                            <input asp-for="UserId" value="@User.GetUserId()" type="hidden"/>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label asp-for="Name"> </label>
+                                    <div class="position-relative ">
+                                        <input autocomplete="off" type="text" class="form-control" asp-for="Name">
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+                            <div class="col-12 d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary px-4 mb-1">ثبت</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section CustomStyles
+{
+    <link href="/Admin/assets/plugins/select2/select2.min.css" rel="stylesheet" type="text/css" />
+}
+
+@section Script
+{
+
+
+
+    <script src="/Admin/assets/plugins/moment/moment.js"></script>
+    <script src="/Admin/assets/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="/Admin/assets/plugins/select2/select2.min.js"></script>
+    <script src="/Admin/assets/pages/jquery.forms-advanced.js"></script>
+
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        $("#store").addClass('active');
+        $("a[href='#store']").addClass('active');
+        $("#Brand").addClass('active');
+    </script>
+}

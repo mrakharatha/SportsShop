@@ -20,6 +20,8 @@ namespace SportsShop.Infra.IoC
             service.AddScoped<IGlobalService, GlobalService>();
             service.AddScoped<IParameterService, ParameterService>();
             service.AddScoped<IParameterValueService, ParameterValueService>();
+            service.AddScoped<IProductService, ProductService>();
+            service.AddScoped<IBrandService, BrandService>();
 
 
             #endregion
@@ -32,6 +34,8 @@ namespace SportsShop.Infra.IoC
             service.AddScoped<IProductGroupRepository, ProductGroupRepository>();
             service.AddScoped<IParameterRepository, ParameterRepository>();
             service.AddScoped<IParameterValueRepository, ParameterValueRepository>();
+            service.AddScoped<IProductRepository, ProductRepository>();
+            service.AddScoped<IBrandRepository, BrandRepository>();
 
             #endregion
 

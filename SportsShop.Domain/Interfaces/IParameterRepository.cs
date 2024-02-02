@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SportsShop.Domain.Models.Products;
 
 namespace SportsShop.Domain.Interfaces
@@ -10,6 +11,7 @@ namespace SportsShop.Domain.Interfaces
         Parameter GetParameterById(int parameterId);
         void UpdateParameter(Parameter parameter);
         bool IsExist(int parameterId);
+        List<SelectListItem> GetAllParameters();
 
     }
 }

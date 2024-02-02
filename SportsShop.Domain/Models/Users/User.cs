@@ -54,7 +54,8 @@ namespace SportsShop.Domain.Models.Users
         public ICollection<ProductGroup> ProductGroups { get; set; }
         public ICollection<Parameter> Parameters { get; set; }
         public ICollection<ParameterValue> ParameterValues { get; set; }
-
+        public ICollection<Product> Products { get; set; }
+        public ICollection<Brand> Brands { get; set; }
         #endregion
     }
 }

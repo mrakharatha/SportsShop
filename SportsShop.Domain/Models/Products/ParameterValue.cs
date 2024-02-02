@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace SportsShop.Domain.Models.Products
 {
@@ -17,7 +18,6 @@ namespace SportsShop.Domain.Models.Products
         #region Relations
 
         public Parameter Parameter { get; set; }
-
         #endregion
     }
 }

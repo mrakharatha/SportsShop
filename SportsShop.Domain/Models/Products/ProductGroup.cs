@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SportsShop.Domain.Models.Products
@@ -28,12 +29,19 @@ namespace SportsShop.Domain.Models.Products
 
 
 
-       
 
 
+
+        #region Relations
 
         [ForeignKey(nameof(ParentId))]
         public ProductGroup ParentGroup { get; set; }
+
+
+        public ICollection<Product> Products { get; set; }
+
+        #endregion
+
 
     }
 }

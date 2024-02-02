@@ -173,6 +173,54 @@ namespace SportsShop.Infra.Data.Migrations
                             PermissionId = 23,
                             ParentId = 20,
                             PermissionTitle = "حذف مقادیر پارامتر کالا"
+                        },
+                        new
+                        {
+                            PermissionId = 24,
+                            ParentId = 11,
+                            PermissionTitle = "کالا"
+                        },
+                        new
+                        {
+                            PermissionId = 25,
+                            ParentId = 24,
+                            PermissionTitle = "افزودن کالا"
+                        },
+                        new
+                        {
+                            PermissionId = 26,
+                            ParentId = 24,
+                            PermissionTitle = "ویرایش کالا"
+                        },
+                        new
+                        {
+                            PermissionId = 27,
+                            ParentId = 24,
+                            PermissionTitle = "حذف کالا"
+                        },
+                        new
+                        {
+                            PermissionId = 28,
+                            ParentId = 11,
+                            PermissionTitle = "برند کالا"
+                        },
+                        new
+                        {
+                            PermissionId = 29,
+                            ParentId = 28,
+                            PermissionTitle = "افزودن برند کالا"
+                        },
+                        new
+                        {
+                            PermissionId = 30,
+                            ParentId = 28,
+                            PermissionTitle = "ویرایش برند کالا"
+                        },
+                        new
+                        {
+                            PermissionId = 31,
+                            ParentId = 28,
+                            PermissionTitle = "حذف برند کالا"
                         });
                 });
 
@@ -234,6 +282,37 @@ namespace SportsShop.Infra.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("RolePermissions");
+                });
+
+            modelBuilder.Entity("SportsShop.Domain.Models.Products.Brand", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Brands");
                 });
 
             modelBuilder.Entity("SportsShop.Domain.Models.Products.Parameter", b =>
@@ -303,6 +382,75 @@ namespace SportsShop.Infra.Data.Migrations
                     b.ToTable("ParameterValues");
                 });
 
+            modelBuilder.Entity("SportsShop.Domain.Models.Products.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("BrandId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<string>("BriefDescription")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MoreInformation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PriceProduct")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProductGroupId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductImage")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("SendAndReturn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BrandId");
+
+                    b.HasIndex("ProductGroupId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Products");
+                });
+
             modelBuilder.Entity("SportsShop.Domain.Models.Products.ProductGroup", b =>
                 {
                     b.Property<int>("Id")
@@ -344,6 +492,28 @@ namespace SportsShop.Infra.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("ProductGroups");
+                });
+
+            modelBuilder.Entity("SportsShop.Domain.Models.Products.ProductParameter", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ParameterId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParameterId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductParameters");
                 });
 
             modelBuilder.Entity("SportsShop.Domain.Models.Stores.Office", b =>
@@ -536,6 +706,17 @@ namespace SportsShop.Infra.Data.Migrations
                     b.Navigation("Role");
                 });
 
+            modelBuilder.Entity("SportsShop.Domain.Models.Products.Brand", b =>
+                {
+                    b.HasOne("SportsShop.Domain.Models.Users.User", "User")
+                        .WithMany("Brands")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("SportsShop.Domain.Models.Products.Parameter", b =>
                 {
                     b.HasOne("SportsShop.Domain.Models.Users.User", "User")
@@ -566,6 +747,33 @@ namespace SportsShop.Infra.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("SportsShop.Domain.Models.Products.Product", b =>
+                {
+                    b.HasOne("SportsShop.Domain.Models.Products.Brand", "Brand")
+                        .WithMany("Products")
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SportsShop.Domain.Models.Products.ProductGroup", "ProductGroup")
+                        .WithMany("Products")
+                        .HasForeignKey("ProductGroupId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SportsShop.Domain.Models.Users.User", "User")
+                        .WithMany("Products")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Brand");
+
+                    b.Navigation("ProductGroup");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("SportsShop.Domain.Models.Products.ProductGroup", b =>
                 {
                     b.HasOne("SportsShop.Domain.Models.Products.ProductGroup", "ParentGroup")
@@ -581,6 +789,25 @@ namespace SportsShop.Infra.Data.Migrations
                     b.Navigation("ParentGroup");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("SportsShop.Domain.Models.Products.ProductParameter", b =>
+                {
+                    b.HasOne("SportsShop.Domain.Models.Products.Parameter", "Parameter")
+                        .WithMany("ProductParameters")
+                        .HasForeignKey("ParameterId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SportsShop.Domain.Models.Products.Product", "Product")
+                        .WithMany("ProductParameters")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Parameter");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("SportsShop.Domain.Models.Stores.Office", b =>
@@ -619,13 +846,32 @@ namespace SportsShop.Infra.Data.Migrations
                     b.Navigation("Users");
                 });
 
+            modelBuilder.Entity("SportsShop.Domain.Models.Products.Brand", b =>
+                {
+                    b.Navigation("Products");
+                });
+
             modelBuilder.Entity("SportsShop.Domain.Models.Products.Parameter", b =>
                 {
                     b.Navigation("ParameterValues");
+
+                    b.Navigation("ProductParameters");
+                });
+
+            modelBuilder.Entity("SportsShop.Domain.Models.Products.Product", b =>
+                {
+                    b.Navigation("ProductParameters");
+                });
+
+            modelBuilder.Entity("SportsShop.Domain.Models.Products.ProductGroup", b =>
+                {
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("SportsShop.Domain.Models.Users.User", b =>
                 {
+                    b.Navigation("Brands");
+
                     b.Navigation("Offices");
 
                     b.Navigation("Parameters");
@@ -633,6 +879,8 @@ namespace SportsShop.Infra.Data.Migrations
                     b.Navigation("ParameterValues");
 
                     b.Navigation("ProductGroups");
+
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

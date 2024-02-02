@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SportsShop.Application.Helpers;
 using SportsShop.Application.Interfaces;
 using SportsShop.Domain.Interfaces;
@@ -14,6 +15,25 @@ namespace SportsShop.Application.Services
         public ParameterService(IParameterRepository parameterRepository)
         {
             _parameterRepository = parameterRepository;
+        }
+
+        public List<SelectListItem> GetAllParameters(bool isDefault = true)
+        {
+
+            List<SelectListItem> result = new List<SelectListItem>();
+
+            if (isDefault)
+            {
+                result.Add(new SelectListItem()
+                {
+                    Value = null,
+                    Text = "لطفا انتخاب کنید",
+                });
+            }
+
+            result.AddRange(_parameterRepository.GetAllParameters());
+
+            return result;
         }
 
         public List<Parameter> GetAll()

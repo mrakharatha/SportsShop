@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SportsShop.Domain.Interfaces;
 using SportsShop.Domain.Models.Products;
@@ -41,6 +42,17 @@ namespace SportsShop.Infra.Data.Repository
         public bool IsExist(int parameterId)
         {
             return _context.ParameterValues.Any(x => x.ParameterId == parameterId);
+        }
+
+        public List<SelectListItem> GetAllParameters()
+        {
+            return _context.Parameters
+                .OrderByDescending(x => x.Id)
+                .Select(r => new SelectListItem()
+                {
+                    Text = r.Name,
+                    Value = r.Id.ToString()
+                }).ToList();
         }
     }
 }

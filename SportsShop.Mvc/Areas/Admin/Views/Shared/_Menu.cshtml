@@ -120,6 +120,19 @@
                             <a class="nav-link" id="Parameter" asp-controller="Parameter" asp-action="Index" asp-area="Admin"><i class="dripicons-view-thumb"></i>پارامتر کالا</a>
                         </li>
                     }
+                    @if (PermissionService.CheckPermission(28, userId))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" id="Brand" asp-controller="Brand" asp-action="Index" asp-area="Admin"><i class="dripicons-view-thumb"></i>برند کالا</a>
+                        </li>
+                    }
+                    
+                    @if (PermissionService.CheckPermission(24, userId))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" id="Product" asp-controller="Product" asp-action="Index" asp-area="Admin"><i class="dripicons-view-thumb"></i>کالا</a>
+                        </li>
+                    }
                     </ul>
                 </div>
             }

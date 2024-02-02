@@ -1,0 +1,316 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using SportsShop.Application.Interfaces
+@using SportsShop.Application.Services
+@using SportsShop.Domain.Security
+@model SportsShop.Domain.Dtos.Products.ProductDto
+@inject IProductGroupService ProductGroupService
+@inject IParameterService ParameterService
+@inject IBrandService BrandService
+@inject IGlobalService GlobalService
+@{
+    ViewData["Title"] = "افزودن  کالا";
+    Layout = "_DefaultAdminLayout";
+
+}
+
+
+<div class="content-header row">
+    <div class="content-header-left col-12 mb-2 mt-1">
+        <div class="row breadcrumbs-top">
+            <div class="col-12">
+                <div class="breadcrumb-wrapper">
+                    <ol class="breadcrumb p-0 mb-0">
+                        <li class="breadcrumb-item">
+                            <a asp-controller="Home" asp-action="Index" asp-area="Admin"><i class="mdi mdi-home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a asp-controller="Product" asp-action="Index" asp-area="Admin">لیست کالا</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <a href="#">افزودن کالا</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12 col-12">
+    <div class="card">
+
+        <div class="card-content">
+            <div class="card-body">
+                <form class="form form-vertical" method="post" enctype="multipart/form-data">
+                    <div class="form-body">
+                        <div class="row">
+
+                            <input asp-for="UserId" value="@User.GetUserId()" type="hidden" />
+
+                            <div class="text-danger" asp-validation-summary="All"></div>
+                            
+                            
+                            <div class="row col-12">
+                                
+                                <div class="col-9">
+                                    
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label asp-for="Title"> </label>
+                                            <div class="position-relative ">
+                                                <input autocomplete="off" type="text" class="form-control" asp-for="Title">
+                                                <span asp-validation-for="Title" class="text-danger"></span>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row col-12">
+
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label asp-for="ProductGroupId"></label>
+                                                <div class="position-relative has-icon-left">
+                                                    <select class="select2 form-control select2-hidden-accessible" asp-for="ProductGroupId" asp-items="@(new SelectList(ProductGroupService.GetAllProductGroups(false) ,"Value","Text"))">
+                                                    </select>
+                                                    <span class="text-danger" asp-validation-for="ProductGroupId"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label asp-for="BrandId"></label>
+                                                <div class="position-relative has-icon-left">
+                                                    <select class="select2 form-control select2-hidden-accessible" asp-for="BrandId" asp-items="@(new SelectList(BrandService.GetAllBrands() ,"Value","Text"))">
+                                                    </select>
+                                                    <span class="text-danger" asp-validation-for="BrandId"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    
+                                    <div class="row col-12">
+
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label asp-for="Parameters"></label>
+                                                <div class="position-relative has-icon-left">
+                                                    <select class="select2 form-control select2-hidden-accessible input-validation-error" multiple asp-for="Parameters" asp-items="@(new SelectList(ParameterService.GetAllParameters(false), "Value", "Text"))">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label asp-for="Status"></label>
+                                                <div class="position-relative has-icon-left">
+                                                    <select class="select2 form-control select2-hidden-accessible" asp-for="Status" asp-items="@(new SelectList(GlobalService.GetStatus() ,"Value","Text"))">
+                                                    </select>
+                                                    <span class="text-danger" asp-validation-for="Status"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="col-12">
+                                        <label asp-for="PriceProduct"></label>
+                                        <div class="form-group">                                                    
+                                            <input autocomplete="off" type="text" step="any" class="form-control" onkeyup="format(this)" asp-for="Number">
+                                            <span asp-validation-for="Number" class="text-danger d-none"></span>
+
+                                            <br/>
+                                            <span id="Amount"></span>
+                                            <input type="hidden" asp-for="PriceProduct">
+                                            <span asp-validation-for="PriceProduct" class="text-danger d-none"></span>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                
+                                
+
+                                <div class="col-3">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label asp-for="ProductImage"></label>
+                                            <div class="position-relative has-icon-left">
+                                                <input type="file" asp-for="ProductImage" class="dropify"/>
+                                                <span asp-validation-for="ProductImage" class="text-danger d-none"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                            
+                           
+
+                           
+
+
+
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label asp-for="BriefDescription"></label>
+                                    <div class="position-relative has-icon-left">
+                                        <textarea type="text" asp-for="BriefDescription" class="form-control" rows="3" autocomplete="off"></textarea>
+                                        <span class="text-danger" asp-validation-for="BriefDescription"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label asp-for="Description"></label>
+                                    <div class="position-relative has-icon-left">
+                                        <textarea type="text" asp-for="Description" class="form-control" rows="3" autocomplete="off"></textarea>
+                                        <span class="text-danger" asp-validation-for="Description"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label asp-for="MoreInformation"></label>
+                                    <div class="position-relative has-icon-left">
+                                        <textarea type="text" asp-for="MoreInformation" class="form-control" rows="3" autocomplete="off"></textarea>
+                                        <span class="text-danger" asp-validation-for="MoreInformation"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label asp-for="SendAndReturn"></label>
+                                    <div class="position-relative has-icon-left">
+                                        <textarea type="text" asp-for="SendAndReturn" class="form-control" rows="3" autocomplete="off"></textarea>
+                                        <span class="text-danger" asp-validation-for="SendAndReturn"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                            <div class="col-12 d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary px-4 mb-1">ثبت</button>
+                            </div>
+
+
+
+
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section CustomStyles
+{
+    <link href="/Admin/assets/plugins/dropify/css/dropify.min.css" rel="stylesheet">
+    <link href="/Admin/assets/plugins/select2/select2.min.css" rel="stylesheet" type="text/css" />
+
+}
+
+@section Script
+{
+
+
+
+    <script src="/Admin/assets/plugins/moment/moment.js"></script>
+    <script src="/Admin/assets/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="/Admin/assets/plugins/select2/select2.min.js"></script>
+    <script src="/Admin/assets/pages/jquery.forms-advanced.js"></script>\
+    <script src="/Admin/assets/plugins/dropify/js/dropify.min.js"></script>
+    <script src="/Admin/assets/pages/jquery.form-upload.init.js"></script>
+    <script src="/Admin/ckeditor/ckeditor.js"></script>
+    <script src="/Admin/ckeditor/adapters/jquery.js"></script>
+    <script src="/Admin/assets/js/scripts/num2persian-min.js"></script>
+
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+
+    <script>
+        $("#store").addClass('active');
+        $("a[href='#store']").addClass('active');
+        $("#Product").addClass('active');
+    </script>
+
+
+    <script>
+
+        CKEDITOR.replace('Description', {
+            customConfig: '/Admin/ckeditor/config.js'
+
+        });
+
+        CKEDITOR.replace('MoreInformation', {
+            customConfig: '/Admin/ckeditor/config.js'
+
+        });
+
+        CKEDITOR.replace('SendAndReturn', {
+            customConfig: '/Admin/ckeditor/config.js'
+
+        });
+
+    </script>
+    <script>
+        $("#Number").on("keypress", filterChars);
+
+        function filterChars (evt) {
+            let key = evt.key;
+
+
+            if (key >= "0" && key <= "9" && evt.target.value.length <= 20) {
+                return;
+            }
+            evt.preventDefault();
+        }
+
+        function format (input) {
+            var nStr = input.value + '';
+            nStr = nStr.replace(/\,/g, "");
+            x = nStr.split('.');
+            x1 = x[ 0 ];
+
+            $("#PriceProduct").val(x1);
+            $("#Amount").text(Num2persian(x1) + '  تومان');
+
+            x2 = x.length > 1 ? '.' + x[ 1 ] : '';
+            var rgx = /(\d+)(\d{3})/;
+            while (rgx.test(x1)) {
+                x1 = x1.replace(rgx, '$1' + ',' + '$2');
+            }
+            input.value = x1 + x2;
+
+        }
+
+    </script>
+}
+
