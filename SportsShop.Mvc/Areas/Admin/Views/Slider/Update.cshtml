@@ -1,0 +1,213 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using SportsShop.Application.Interfaces
+@using SportsShop.Application.Services
+@using SportsShop.Domain.Security
+@inject IGlobalService GlobalService
+@model SportsShop.Domain.Models.Banner.Slider
+@{
+    ViewData["Title"] = "ویرایش  اسلایدر";
+    Layout = "_DefaultAdminLayout";
+
+}
+
+
+<div class="content-header row">
+    <div class="content-header-left col-12 mb-2 mt-1">
+        <div class="row breadcrumbs-top">
+            <div class="col-12">
+                <div class="breadcrumb-wrapper">
+                    <ol class="breadcrumb p-0 mb-0">
+                        <li class="breadcrumb-item">
+                            <a asp-controller="Home" asp-action="Index" asp-area="Admin"><i class="mdi mdi-home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a asp-controller="Slider" asp-action="Index" asp-area="Admin">لیست اسلایدر</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <a href="#">ویرایش اسلایدر</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12 col-12">
+    <div class="card">
+
+        <div class="card-content">
+            <div class="card-body">
+                <form class="form form-vertical" method="post" enctype="multipart/form-data">
+                    <div class="form-body">
+                        <div class="row">
+
+                            <input asp-for="UserId" value="@User.GetUserId()" type="hidden" />
+                            <input asp-for="Id"  type="hidden" />
+                            <input asp-for="CreateDate"  type="hidden" />
+                            <input asp-for="SliderImage" type="hidden"/>
+                            
+
+                            <div class="text-danger" asp-validation-summary="All"></div>
+
+
+                            <div class="row col-12">
+
+                                <div class="col-9">
+
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label asp-for="Title"> </label>
+                                            <div class="position-relative ">
+                                                <input autocomplete="off" type="text" class="form-control" asp-for="Title">
+                                                <span asp-validation-for="Title" class="text-danger"></span>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row col-12">
+
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label asp-for="SubTitle"> </label>
+                                                <div class="position-relative ">
+                                                    <input autocomplete="off" type="text" class="form-control" asp-for="SubTitle">
+                                                    <span asp-validation-for="SubTitle" class="text-danger"></span>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label asp-for="ActiveButton"></label>
+                                                <div class="position-relative has-icon-left">
+                                                    <select class="select2 form-control select2-hidden-accessible" asp-for="ActiveButton" asp-items="@(new SelectList(GlobalService.GetStatus() ,"Value","Text"))">
+                                                    </select>
+                                                    <span class="text-danger" asp-validation-for="ActiveButton"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="row col-12">
+
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label asp-for="NameButton"> </label>
+                                                <div class="position-relative ">
+                                                    <input autocomplete="off" type="text" class="form-control" asp-for="NameButton">
+                                                    <span asp-validation-for="NameButton" class="text-danger"></span>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label asp-for="UrlButton"> </label>
+                                                <div class="position-relative ">
+                                                    <input autocomplete="off" type="text" class="form-control" asp-for="UrlButton">
+                                                    <span asp-validation-for="UrlButton" class="text-danger"></span>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+
+                                <div class="col-3">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label asp-for="Image"></label>
+                                            <div class="position-relative has-icon-left">
+                                                <input type="file" asp-for="Image" class="dropify" data-default-file="@Model.SliderImage" />
+                                                <span asp-validation-for="Image" class="text-danger d-none"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="col-12 d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary px-4 mb-1">ثبت</button>
+                            </div>
+
+
+
+
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section CustomStyles
+{
+    <link href="/Admin/assets/plugins/dropify/css/dropify.min.css" rel="stylesheet">
+    <link href="/Admin/assets/plugins/select2/select2.min.css" rel="stylesheet" type="text/css" />
+
+}
+
+@section Script
+{
+
+
+
+
+
+    <script src="/Admin/assets/plugins/moment/moment.js"></script>
+    <script src="/Admin/assets/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="/Admin/assets/plugins/select2/select2.min.js"></script>
+    <script src="/Admin/assets/pages/jquery.forms-advanced.js"></script>
+    <script src="/Admin/assets/plugins/dropify/js/dropify.min.js"></script>
+    <script src="/Admin/assets/pages/jquery.form-upload.init.js"></script>
+    <script src="/Admin/ckeditor/adapters/jquery.js"></script>
+
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+
+
+    <script>
+        $("#information").addClass('active');
+        $("a[href='#information']").addClass('active');
+        $("#Slider").addClass('active');
+    </script>
+
+}
+

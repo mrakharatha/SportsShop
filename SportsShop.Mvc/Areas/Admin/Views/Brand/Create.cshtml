@@ -37,11 +37,12 @@
 
         <div class="card-content">
             <div class="card-body">
-                <form class="form form-vertical" method="post">
+                <form class="form form-vertical" method="post" enctype="multipart/form-data">
                     <div class="form-body">
                         <div class="row">
-                            
-                            <input asp-for="UserId" value="@User.GetUserId()" type="hidden"/>
+
+                            <input asp-for="UserId" value="@User.GetUserId()" type="hidden" />
+                            <div class="text-danger" asp-validation-summary="All"></div>
 
                             <div class="col-12">
                                 <div class="form-group">
@@ -54,7 +55,22 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
+
+
+
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label asp-for="Image"></label>
+                                    <div class="position-relative has-icon-left">
+                                        <input type="file" asp-for="Image" class="dropify" />
+                                        <span asp-validation-for="Image" class="text-danger d-none"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+
 
                             <div class="col-12 d-flex justify-content-end">
                                 <button type="submit" class="btn btn-primary px-4 mb-1">ثبت</button>
@@ -73,6 +89,8 @@
 @section CustomStyles
 {
     <link href="/Admin/assets/plugins/select2/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Admin/assets/plugins/dropify/css/dropify.min.css" rel="stylesheet">
+
 }
 
 @section Script
@@ -84,10 +102,11 @@
     <script src="/Admin/assets/plugins/daterangepicker/daterangepicker.js"></script>
     <script src="/Admin/assets/plugins/select2/select2.min.js"></script>
     <script src="/Admin/assets/pages/jquery.forms-advanced.js"></script>
-
-
+    <script src="/Admin/assets/plugins/dropify/js/dropify.min.js"></script>
+    <script src="/Admin/assets/pages/jquery.form-upload.init.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
     <script>
         $("#store").addClass('active');
         $("a[href='#store']").addClass('active');

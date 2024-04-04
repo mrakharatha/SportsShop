@@ -59,8 +59,7 @@ namespace SportsShop.Domain.Models.Products
 
         [ForeignKey(nameof(BrandId))]
         public Brand Brand { get; set; }
-        public ICollection<ProductParameter> ProductParameters { get; set; }
-
+        public ICollection<ProductGallery> ProductGalleries { get; set; }
         #endregion
     }
 }

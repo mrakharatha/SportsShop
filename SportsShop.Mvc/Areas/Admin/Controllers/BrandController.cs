@@ -39,6 +39,12 @@ namespace SportsShop.Mvc.Areas.Admin.Controllers
             if (!ModelState.IsValid)
                 return View(brand);
 
+            if (brand.Image == null)
+            {
+                ModelState.AddModelError("All", "لطفا تصویر برند کالا را انتخاب کنید");
+                return View(brand);
+            }
+
             _brandService.AddBrand(brand);
 
             return RedirectToAction("Index");

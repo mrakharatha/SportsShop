@@ -3,72 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SportsShop.Infra.Data.Context;
 
 namespace SportsShop.Infra.Data.Migrations
 {
     [DbContext(typeof(SportsShopDbContext))]
-    partial class SportsShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240202135948_AddTblProductGallery")]
+    partial class AddTblProductGallery
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("SportsShop.Domain.Models.Banner.Slider", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("ActiveButton")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeleteDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("NameButton")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("SliderImage")
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
-
-                    b.Property<string>("SubTitle")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UrlButton")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Sliders");
-                });
 
             modelBuilder.Entity("SportsShop.Domain.Models.Permissions.Permission", b =>
                 {
@@ -272,54 +223,6 @@ namespace SportsShop.Infra.Data.Migrations
                             PermissionId = 31,
                             ParentId = 28,
                             PermissionTitle = "حذف برند کالا"
-                        },
-                        new
-                        {
-                            PermissionId = 32,
-                            ParentId = 24,
-                            PermissionTitle = "گالری کالا"
-                        },
-                        new
-                        {
-                            PermissionId = 33,
-                            ParentId = 32,
-                            PermissionTitle = "افزودن گالری کالا"
-                        },
-                        new
-                        {
-                            PermissionId = 34,
-                            ParentId = 32,
-                            PermissionTitle = "ویرایش گالری کالا"
-                        },
-                        new
-                        {
-                            PermissionId = 35,
-                            ParentId = 32,
-                            PermissionTitle = "حذف گالری کالا"
-                        },
-                        new
-                        {
-                            PermissionId = 36,
-                            ParentId = 2,
-                            PermissionTitle = "اسلایدر"
-                        },
-                        new
-                        {
-                            PermissionId = 37,
-                            ParentId = 36,
-                            PermissionTitle = "افزودن اسلایدر"
-                        },
-                        new
-                        {
-                            PermissionId = 38,
-                            ParentId = 36,
-                            PermissionTitle = "ویرایش اسلایدر"
-                        },
-                        new
-                        {
-                            PermissionId = 39,
-                            ParentId = 36,
-                            PermissionTitle = "حذف اسلایدر"
                         });
                 });
 
@@ -389,10 +292,6 @@ namespace SportsShop.Infra.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("BrandImage")
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
@@ -819,17 +718,6 @@ namespace SportsShop.Infra.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("SportsShop.Domain.Models.Banner.Slider", b =>
-                {
-                    b.HasOne("SportsShop.Domain.Models.Users.User", "User")
-                        .WithMany("Sliders")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("SportsShop.Domain.Models.Permissions.Permission", b =>
                 {
                     b.HasOne("SportsShop.Domain.Models.Permissions.Permission", null)
@@ -1052,8 +940,6 @@ namespace SportsShop.Infra.Data.Migrations
                     b.Navigation("ProductGroups");
 
                     b.Navigation("Products");
-
-                    b.Navigation("Sliders");
                 });
 #pragma warning restore 612, 618
         }

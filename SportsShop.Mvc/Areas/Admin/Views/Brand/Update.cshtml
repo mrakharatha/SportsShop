@@ -37,13 +37,14 @@
 
         <div class="card-content">
             <div class="card-body">
-                <form class="form form-vertical" method="post">
+                <form class="form form-vertical" method="post" enctype="multipart/form-data">
                     <div class="form-body">
                         <div class="row">
 
                             <input asp-for="UserId" value="@User.GetUserId()" type="hidden" />
                             <input asp-for="Id"  type="hidden" />
                             <input asp-for="CreateDate"  type="hidden" />
+                            <input asp-for="BrandImage" type="hidden"/>
 
                             <div class="col-12">
                                 <div class="form-group">
@@ -52,6 +53,17 @@
                                         <input autocomplete="off" type="text" class="form-control" asp-for="Name">
                                         <span asp-validation-for="Name" class="text-danger"></span>
 
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label asp-for="Image"></label>
+                                    <div class="position-relative has-icon-left">
+                                        <input type="file" asp-for="Image" class="dropify" data-default-file="@Model.BrandImage" />
+                                        <span asp-validation-for="Image" class="text-danger d-none"></span>
 
                                     </div>
                                 </div>
@@ -78,6 +90,8 @@
 
 @section CustomStyles
 {
+    <link href="/Admin/assets/plugins/dropify/css/dropify.min.css" rel="stylesheet">
+
     <link href="/Admin/assets/plugins/select2/select2.min.css" rel="stylesheet" type="text/css" />
 }
 
@@ -90,6 +104,9 @@
     <script src="/Admin/assets/plugins/daterangepicker/daterangepicker.js"></script>
     <script src="/Admin/assets/plugins/select2/select2.min.js"></script>
     <script src="/Admin/assets/pages/jquery.forms-advanced.js"></script>
+
+    <script src="/Admin/assets/plugins/dropify/js/dropify.min.js"></script>
+    <script src="/Admin/assets/pages/jquery.form-upload.init.js"></script>
 
 
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>

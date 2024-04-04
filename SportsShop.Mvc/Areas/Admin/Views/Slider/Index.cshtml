@@ -1,0 +1,157 @@
+﻿@using SportsShop.Domain.Convertors
+@model List<SportsShop.Domain.Models.Banner.Slider>
+@{
+    ViewData["Title"] = " اسلایدر";
+    int cnt = 1;
+    Layout = "_DefaultAdminLayout";
+}
+
+
+
+
+
+
+<div class="content-header row">
+    <div class="content-header-left col-12 mb-2 mt-1">
+        <div class="row breadcrumbs-top">
+            <div class="col-12">
+                <div class="breadcrumb-wrapper">
+                    <ol class="breadcrumb p-0 mb-0">
+                        <li class="breadcrumb-item">
+                            <a asp-controller="Home" asp-action="Index" asp-area="Admin"><i class="mdi mdi-home"></i></a>
+                        </li>
+
+                        <li class="breadcrumb-item active">
+                            <a href="#"> لیست  اسلایدر  </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section id="basic-datatable">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-white search-box">
+                    <input type="text" id="mySearchText" class="form-control" placeholder="جستجو ...">
+                </div>
+
+                <div class="card-header">
+                    <a asp-area="Admin" asp-controller="Slider" asp-action="Create" type="button" class="btn col-lg-1  btn-primary  mr-1 mb-1">افزودن</a>
+                </div>
+                <div class="card-content">
+                    <div class="card-body card-dashboard">
+                        <div class="table-responsive">
+                            <table id="DataTable" class="table zero-configuration">
+                                <thead>
+                                    <tr>
+                                        <th>ردیف</th>
+                                        <th>عنوان</th>
+                                        <th>عنوان دوم</th>
+                                        <th>ایجاد کننده</th>
+                                        <th>تاریخ ثبت</th>
+                                        <th>عملیات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+
+                                        <tr id="Slider_@(item.Id)">
+                                            <td>@cnt</td>
+                                            <td>@item.Title</td>
+                                            <td>@item.SubTitle</td>
+                                            <td>@((item.UserId != 1) ? item.User.FullName : "-")</td>
+                                            <td>@item.CreateDate.ToShamsiTime()</td>
+                                            <td>
+                                                <div class="dropup">
+                                                    <span style="padding: 0 20px" class="fas fa-ellipsis-v  dropdown-toggle cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                    </span>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item" asp-area="Admin" asp-controller="Slider" asp-action="Update" asp-route-id="@item.Id"><i class="far fa-edit mr-1"></i> ویرایش</a>
+                                                        <a class="dropdown-item" onclick="DeleteSlider(@item.Id)"><i class="far fa-trash-alt mr-1"></i> حذف</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        cnt++;
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section CustomStyles
+{
+    <link rel="stylesheet" type="text/css" href="/Admin/assets/vendors/css/tables/datatable/datatables.min.css">
+
+}
+
+
+@section Script
+{
+    <script src="/Admin/assets/vendors/js/tables/datatable/datatables.min.js"></script>
+    <script src="/Admin/assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js"></script>
+    <script src="/Admin/assets/js/scripts/datatables/datatable.js"></script>
+
+    <script src="/Admin/assets/js/scripts/configDataTable.js"></script>
+
+
+    <script type="text/javascript">
+
+        function DeleteSlider (id) {
+
+            Swal.fire({
+                title: 'آیا مطمئنید؟',
+                text: "این عمل قابل بازگشت نخواهد بود!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'تایید',
+                confirmButtonClass: 'btn btn-primary',
+                cancelButtonClass: 'btn btn-danger ml-1',
+                cancelButtonText: 'انصراف',
+                buttonsStyling: false,
+            }).then(function (result) {
+                if (result.value) {
+                    $.get("/Admin/Slider/Delete/" + id,
+                        function (data) {
+                            if (data.isSuccess) {
+                                Swal.fire({
+                                    type: "success",
+                                    title: 'حذف شد!',
+                                    text: data.message,
+                                    confirmButtonClass: 'btn btn-success',
+                                    confirmButtonText: 'باشه',
+                                });
+
+                                $("#Slider_" + id).hide('slow');
+                            }
+                            else {
+                                Swal.fire({
+                                    title: "خطا!",
+                                    text: data.message,
+                                    type: "error",
+                                    confirmButtonClass: 'btn btn-primary',
+                                    confirmButtonText: 'باشه',
+                                    buttonsStyling: false,
+                                });
+                            }
+                        });
+                }
+            });
+
+        }
+
+    </script>
+
+}

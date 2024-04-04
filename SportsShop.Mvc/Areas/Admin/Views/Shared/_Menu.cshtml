@@ -157,6 +157,13 @@
                             <a class="nav-link" id="User" asp-controller="User" asp-action="Index" asp-area="Admin"><i class="dripicons-user"></i>کاربر سیستم</a>
                         </li>
                     }
+                    
+                    @if (PermissionService.CheckPermission(36, userId))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" id="Slider" asp-controller="Slider" asp-action="Index" asp-area="Admin"><i class="dripicons-view-thumb"></i>اسلایدر</a>
+                        </li>
+                    }
                     </ul >
                 </div>
             }

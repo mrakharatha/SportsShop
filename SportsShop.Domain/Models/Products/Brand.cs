@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SportsShop.Domain.Models.Products
 {
@@ -10,6 +12,16 @@ namespace SportsShop.Domain.Models.Products
         [MaxLength(100)]
         public string Name { get; set; }
 
+
+        [Display(Name = "لگو برند")]
+        [MaxLength(300)]
+
+        public string BrandImage { get; set; }
+
+
+        [Display(Name = "لگو برند")]
+        [NotMapped]
+        public IFormFile Image { get; set; }
 
         #region Relations
 

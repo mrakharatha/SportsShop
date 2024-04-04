@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SportsShop.Application.Helpers;
 using SportsShop.Application.Interfaces;
 using SportsShop.Domain.Dtos.Products;
 using SportsShop.Domain.Interfaces;
@@ -37,7 +38,6 @@ namespace SportsShop.Application.Services
                 BriefDescription = model.BriefDescription,
                 Description = model.Description,
                 MoreInformation = model.MoreInformation,
-                ProductParameters = model.Parameters?.Select(x => new ProductParameter() { ParameterId = x }).ToList()
             };
 
             AddProduct(product);
@@ -67,17 +67,6 @@ namespace SportsShop.Application.Services
 
 
             UpdateProduct(product);
-
-
-            var productParameters = model.Parameters?.Select(x=> new ProductParameter()
-            {
-                ParameterId = x,
-                ProductId = product.Id
-            }).ToList();
-
-            DeleteProductParameterRange(product.Id);
-            AddProductParameterRange(productParameters);
-
         }
 
         public void UpdateProduct(Product product)
@@ -86,15 +75,6 @@ namespace SportsShop.Application.Services
             _productRepository.UpdateProduct(product);
         }
 
-        public void DeleteProductParameterRange(int productId)
-        {
-            _productRepository.DeleteProductParameterRange(productId);
-        }
-
-        public void AddProductParameterRange(List<ProductParameter> productParameters)
-        {
-            _productRepository.AddProductParameterRange(productParameters);
-        }
 
         public ProductDto GetProductDtoById(int productId)
         {
@@ -104,6 +84,24 @@ namespace SportsShop.Application.Services
         public Product GetProductById(int productId)
         {
             return _productRepository.GetProductById(productId);
+        }
+
+        public RequestResult DeleteProduct(int productId)
+        {
+            var product = GetProductById(productId);
+            if (product == null) return new RequestResult(false, RequestResultStatusCode.InternalServerError);
+
+            if (IsExist(productId))
+                return new RequestResult(false, RequestResultStatusCode.InternalServerError, " کالا در سیستم استفاده شده است!");
+
+            product.DeleteDate = DateTime.Now;
+            UpdateProduct(product);
+            return new RequestResult(true, RequestResultStatusCode.Success, " کالا با موفقیت حذف شد.");
+        }
+
+        public bool IsExist(int productId)
+        {
+            return _productRepository.IsExist(productId);
         }
     }
 }

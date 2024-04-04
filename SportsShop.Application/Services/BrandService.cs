@@ -5,16 +5,18 @@ using SportsShop.Domain.Interfaces;
 using SportsShop.Domain.Models.Products;
 using System.Collections.Generic;
 using System;
+using System.Reflection;
 
 namespace SportsShop.Application.Services
 {
     public class BrandService: IBrandService
     {
         private readonly IBrandRepository _brandRepository;
-
-        public BrandService(IBrandRepository brandRepository)
+       private readonly IGlobalService _globalService;
+        public BrandService(IBrandRepository brandRepository, IGlobalService globalService)
         {
             _brandRepository = brandRepository;
+            _globalService = globalService;
         }
 
         public List<Brand> GetAll()
@@ -40,11 +42,15 @@ namespace SportsShop.Application.Services
 
         public void AddBrand(Brand brand)
         {
+            brand.BrandImage = _globalService.Upload(brand.Image, "BrandImage");
+
             _brandRepository.AddBrand(brand);
         }
 
         public void UpdateBrand(Brand brand)
         {
+            brand.BrandImage = _globalService.Upload(brand.Image, "BrandImage",brand.BrandImage);
+
             brand.UpdateDate = DateTime.Now;
             _brandRepository.UpdateBrand(brand);
         }

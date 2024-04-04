@@ -5,6 +5,7 @@ using System.Reflection.Metadata;
 using System.Threading.Tasks;
 using System.Threading;
 using Microsoft.EntityFrameworkCore;
+using SportsShop.Domain.Models.Banner;
 using SportsShop.Domain.Models.Permissions;
 using SportsShop.Domain.Models.Products;
 using SportsShop.Domain.Models.Stores;
@@ -30,8 +31,10 @@ namespace SportsShop.Infra.Data.Context
         public DbSet<Parameter> Parameters { get; set; }
         public DbSet<ParameterValue> ParameterValues { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<ProductParameter> ProductParameters { get; set; }
         public DbSet<Brand> Brands { get; set; }
+        public DbSet<ProductGallery> ProductGalleries { get; set; }
+        public DbSet<Slider> Sliders { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             var cascadeFKs = modelBuilder.Model.GetEntityTypes()
@@ -49,6 +52,8 @@ namespace SportsShop.Infra.Data.Context
             modelBuilder.Entity<ParameterValue>().HasQueryFilter(c => c.DeleteDate == null);
             modelBuilder.Entity<Product>().HasQueryFilter(c => c.DeleteDate == null);
             modelBuilder.Entity<Brand>().HasQueryFilter(c => c.DeleteDate == null);
+            modelBuilder.Entity<ProductGallery>().HasQueryFilter(c => c.DeleteDate == null);
+            modelBuilder.Entity<Slider>().HasQueryFilter(c => c.DeleteDate == null);
 
 
             var assembly = typeof(PermissionSeeder).Assembly;

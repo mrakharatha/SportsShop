@@ -64,12 +64,5 @@ namespace SportsShop.Domain.Dtos.Products
 
         [Display(Name = "ارسال و برگشت")]
         public string SendAndReturn { get; set; }
-
-
-
-
-        [Display(Name = "پارامتر کالا")]
-        [Required(ErrorMessage = "لطفا {0} را انتخاب کنید")]
-        public List<int> Parameters { get; set; }
     }
 }

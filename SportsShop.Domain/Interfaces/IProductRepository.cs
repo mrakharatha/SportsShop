@@ -11,10 +11,6 @@ namespace SportsShop.Domain.Interfaces
         ProductDto GetProductDtoById(int productId);
         Product GetProductById(int productId);
         void UpdateProduct(Product product);
-
-
-        void DeleteProductParameterRange(int productId);
-        void AddProductParameterRange(List<ProductParameter> productParameters);
-
+        bool IsExist(int productId);
     }
 }

@@ -22,6 +22,8 @@ namespace SportsShop.Infra.IoC
             service.AddScoped<IParameterValueService, ParameterValueService>();
             service.AddScoped<IProductService, ProductService>();
             service.AddScoped<IBrandService, BrandService>();
+            service.AddScoped<ISliderService, SliderService>();
+
 
 
             #endregion
@@ -36,6 +38,7 @@ namespace SportsShop.Infra.IoC
             service.AddScoped<IParameterValueRepository, ParameterValueRepository>();
             service.AddScoped<IProductRepository, ProductRepository>();
             service.AddScoped<IBrandRepository, BrandRepository>();
+            service.AddScoped<ISliderRepository, SliderRepository>();
 
             #endregion
 

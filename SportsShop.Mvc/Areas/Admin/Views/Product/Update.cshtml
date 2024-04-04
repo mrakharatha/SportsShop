@@ -4,7 +4,6 @@
 @using SportsShop.Domain.Security
 @model SportsShop.Domain.Dtos.Products.ProductDto
 @inject IProductGroupService ProductGroupService
-@inject IParameterService ParameterService
 @inject IBrandService BrandService
 @inject IGlobalService GlobalService
 @{
@@ -97,12 +96,16 @@
                                     <div class="row col-12">
 
                                         <div class="col-6">
+                                            <label asp-for="PriceProduct"></label>
                                             <div class="form-group">
-                                                <label asp-for="Parameters"></label>
-                                                <div class="position-relative has-icon-left">
-                                                    <select class="select2 form-control select2-hidden-accessible input-validation-error" multiple asp-for="Parameters" asp-items="@(new SelectList(ParameterService.GetAllParameters(false), "Value", "Text"))">
-                                                    </select>
-                                                </div>
+                                                <input autocomplete="off" type="text" step="any" class="form-control" onkeyup="format(this)" asp-for="Number">
+                                                <span asp-validation-for="Number" class="text-danger d-none"></span>
+
+                                                <br />
+                                                <span id="Amount"></span>
+                                                <input type="hidden" asp-for="PriceProduct">
+                                                <span asp-validation-for="PriceProduct" class="text-danger d-none"></span>
+
                                             </div>
                                         </div>
 
@@ -119,20 +122,6 @@
                                         </div>
                                     </div>
 
-
-                                    <div class="col-12">
-                                        <label asp-for="PriceProduct"></label>
-                                        <div class="form-group">
-                                            <input autocomplete="off" type="text" step="any" class="form-control" onkeyup="format(this)" asp-for="Number">
-                                            <span asp-validation-for="Number" class="text-danger d-none"></span>
-
-                                            <br />
-                                            <span id="Amount"></span>
-                                            <input type="hidden" asp-for="PriceProduct">
-                                            <span asp-validation-for="PriceProduct" class="text-danger d-none"></span>
-
-                                        </div>
-                                    </div>
 
                                 </div>
 
@@ -244,7 +233,7 @@
     <script src="/Admin/assets/plugins/moment/moment.js"></script>
     <script src="/Admin/assets/plugins/daterangepicker/daterangepicker.js"></script>
     <script src="/Admin/assets/plugins/select2/select2.min.js"></script>
-    <script src="/Admin/assets/pages/jquery.forms-advanced.js"></script>\
+    <script src="/Admin/assets/pages/jquery.forms-advanced.js"></script>
     <script src="/Admin/assets/plugins/dropify/js/dropify.min.js"></script>
     <script src="/Admin/assets/pages/jquery.form-upload.init.js"></script>
     <script src="/Admin/ckeditor/ckeditor.js"></script>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using SportsShop.Domain.Models.Banner;
 using SportsShop.Domain.Models.Permissions;
 using SportsShop.Domain.Models.Products;
 using SportsShop.Domain.Models.Stores;
@@ -56,6 +57,7 @@ namespace SportsShop.Domain.Models.Users
         public ICollection<ParameterValue> ParameterValues { get; set; }
         public ICollection<Product> Products { get; set; }
         public ICollection<Brand> Brands { get; set; }
+        public ICollection<Slider> Sliders { get; set; }
         #endregion
     }
 }

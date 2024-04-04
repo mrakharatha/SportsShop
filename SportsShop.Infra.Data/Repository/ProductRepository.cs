@@ -36,7 +36,6 @@ namespace SportsShop.Infra.Data.Repository
         public ProductDto GetProductDtoById(int productId)
         {
             return _context.Products
-                .Include(x=> x.ProductParameters)
                 .Where(x => x.Id==productId)
                 .Select(x => new ProductDto()
                 {
@@ -53,7 +52,6 @@ namespace SportsShop.Infra.Data.Repository
                     BriefDescription = x.BriefDescription,
                     MoreInformation = x.MoreInformation,
                     SendAndReturn = x.SendAndReturn,
-                    Parameters = x.ProductParameters.Select(p=> p.ParameterId).ToList()
                 })
                 .SingleOrDefault();
         }
@@ -69,16 +67,9 @@ namespace SportsShop.Infra.Data.Repository
             _context.SaveChanges();
         }
 
-        public void DeleteProductParameterRange(int productId)
+        public bool IsExist(int productId)
         {
-            _context.ProductParameters.Where(x=> x.ProductId==productId).ToList().ForEach(x=> _context.Remove(x));
-            _context.SaveChanges();
-        }
-
-        public void AddProductParameterRange(List<ProductParameter> productParameters)
-        {
-            _context.AddRange(productParameters);
-            _context.SaveChanges();
+           return _context.Products.Where(x=> x.Id==productId).Any(x => x.ProductGalleries.Any());
         }
     }
 }

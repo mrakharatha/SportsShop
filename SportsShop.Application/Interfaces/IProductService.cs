@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SportsShop.Application.Helpers;
 using SportsShop.Domain.Dtos.Products;
 using SportsShop.Domain.Models.Products;
 
@@ -14,11 +15,10 @@ namespace SportsShop.Application.Interfaces
         void UpdateProduct(Product product);
 
 
-        void DeleteProductParameterRange(int productId);
-        void AddProductParameterRange(List<ProductParameter> productParameters);
-
         ProductDto GetProductDtoById(int productId);
         Product GetProductById(int productId);
 
+        RequestResult DeleteProduct(int productId);
+        bool IsExist(int productId);
     }
 }

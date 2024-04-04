@@ -1,18 +1,22 @@
 ﻿using System.Collections;
 using Microsoft.AspNetCore.Mvc;
+using SportsShop.Application.Helpers;
 using SportsShop.Application.Interfaces;
 using SportsShop.Application.Security;
+using SportsShop.Application.Services;
 using SportsShop.Domain.Dtos.Products;
+using SportsShop.Domain.Security;
 
 namespace SportsShop.Mvc.Areas.Admin.Controllers
 {
     public class ProductController : BaseController
     {
         private readonly IProductService _productService;
-
-        public ProductController(IProductService productService)
+        private readonly IPermissionService _permissionService;
+        public ProductController(IProductService productService, IPermissionService permissionService)
         {
             _productService = productService;
+            _permissionService = permissionService;
         }
 
 
@@ -60,8 +64,16 @@ namespace SportsShop.Mvc.Areas.Admin.Controllers
 
 
             _productService.UpdateProduct(product);
-
             return RedirectToAction("Index");
+        }
+
+
+        public RequestResult Delete(int id)
+        {
+            if (!_permissionService.CheckPermission(27, User.GetUserId()))
+                return new RequestResult(false, RequestResultStatusCode.Forbidden);
+
+            return _productService.DeleteProduct(id);
         }
     }
 }

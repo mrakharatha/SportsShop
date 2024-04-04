@@ -13,7 +13,6 @@ namespace SportsShop.Domain.Models.Products
         #region Relations
 
         public ICollection<ParameterValue> ParameterValues { get; set; }
-        public ICollection<ProductParameter> ProductParameters { get; set; }
 
         #endregion
     }
